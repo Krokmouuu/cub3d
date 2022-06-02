@@ -6,7 +6,7 @@
 /*   By: bleroy <bleroy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/18 16:44:13 by bleroy            #+#    #+#             */
-/*   Updated: 2022/05/22 18:41:37 by bleroy           ###   ########.fr       */
+/*   Updated: 2022/06/02 16:47:00 by bleroy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,8 @@ char	*get_texture_2(char *str);
 void	get_texture3(char *str, t_game *game);
 int		*get_color(char *str);
 int		checkvalid(int len, t_game *game);
+int		checkfile(t_game *game);
+int		checkmap(int len, t_game *game);
 
 //* **************** Utils ****************
 int		ft_strcmp(char *s1, char *s2);
@@ -66,5 +68,7 @@ char	**ft_split(char const *s, char c);
 int		ft_atoi(const char *str);
 int		alpha(int c);
 int		ft_isdigit(int c);
+void	*ft_calloc(size_t count, size_t size);
+char	*ft_substr(char const *s, unsigned int start, size_t len);
 
 #endif

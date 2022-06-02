@@ -6,7 +6,7 @@
 /*   By: bleroy <bleroy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/22 14:20:49 by bleroy            #+#    #+#             */
-/*   Updated: 2022/05/22 16:21:19 by bleroy           ###   ########.fr       */
+/*   Updated: 2022/06/02 17:22:06 by bleroy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,28 +31,26 @@ int	*get_color(char *str)
 	int		i;
 	char	**tab;
 	int		j;
-	int		*tabint;
 	int		check;
+	int		*tablo;
 
 	i = 1;
-	j = 0;
-	tabint = malloc(sizeof(int *));
+	j = -1;
+	tablo = malloc((3) * sizeof(int)); 
 	while (str[i] && str[i] == ' ')
 		i++;
 	tab = ft_split(&str[i], ',');
-	while (tab[j])
+	while (tab[++j])
 	{
-		check = 0;
-		while (tab[j][check])
-		{
+		check = -1;
+		while (tab[j][++check])
 			if (tab[j][check] == ' ' || alpha(tab[j][check]) == 1 || j >= 3)
 				error("Wrong RGB values\n");
-			check++;
-		}
-		tabint[j] = ft_atoi(tab[j]);
-		j++;
 	}
-	return (tabint);
+	tablo[0] = ft_atoi(tab[0]);
+	tablo[1] = ft_atoi(tab[1]);
+	tablo[2] = ft_atoi(tab[2]);
+	return (tablo);
 }
 
 void	get_texture3(char *str, t_game *game)
@@ -85,13 +83,22 @@ void	get_texture3(char *str, t_game *game)
 char	*get_texture_2(char *str)
 {
 	int	i;
-
+	int	j;
+	char	*newstr;
+	
 	i = 0;
 	while (str[i] != ' ' && str[i])
 		i++;
 	while (str[i] == ' ' && str[i])
 		i++;
-	return (ft_strdup(&str[i]));
+	newstr = ft_strdup(&str[i]);
+	j = ft_strlen(newstr);
+	if (j < 5)
+		error("Error texture\n");
+	j -= 5;
+	if (ft_strcmp(&newstr[j], ".xpm\n") != 0)
+		return (NULL);
+	return (newstr);
 }
 
 void	get_texture(int len, t_game *game)
@@ -110,6 +117,7 @@ void	get_texture(int len, t_game *game)
 	{
 		str = get_next_line(fd);
 		get_texture3(str, game);
+		free (str);
 	}
 	close(fd);
 	if (game->text.n == NULL || game->text.e == NULL

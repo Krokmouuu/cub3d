@@ -1,34 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   open.c                                             :+:      :+:    :+:   */
+/*   ft_calloc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bleroy <bleroy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/18 19:38:35 by bleroy            #+#    #+#             */
-/*   Updated: 2022/06/02 17:23:10 by bleroy           ###   ########.fr       */
+/*   Created: 2022/06/02 11:42:56 by bleroy            #+#    #+#             */
+/*   Updated: 2022/06/02 11:43:09 by bleroy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-void	init(t_game *game, char **argv)
+void	*ft_calloc(size_t count, size_t size)
 {
-	game->file = argv[1];
-	game->x = 0;
-	game->y = 0;
-	game->text.n = NULL;
-	game->text.e = NULL;
-	game->text.s = NULL;
-	game->text.w = NULL;
-	game->text.floor = NULL;
-	game->text.ceiling = NULL;
-}
+	unsigned char	*c;
+	size_t			i;
 
-
-int	openmap(char **argv, t_game *game)
-{
-	init(game, argv);
-	checkfile(game);
-	return (0);
+	i = 0;
+	c = malloc(size * count);
+	if (c == NULL)
+		return (NULL);
+	while (i < size * count)
+		c[i++] = '\0';
+	return ((void *)c);
 }

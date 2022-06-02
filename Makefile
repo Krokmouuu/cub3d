@@ -6,7 +6,7 @@
 #    By: bleroy <bleroy@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/18 18:32:58 by bleroy            #+#    #+#              #
-#    Updated: 2022/05/22 18:24:05 by bleroy           ###   ########.fr        #
+#    Updated: 2022/06/02 16:42:53 by bleroy           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,6 +40,7 @@ SRCS = gnl/get_next_line.c \
 	   gnl/get_next_line_utils.c \
 	   parsing/open.c \
 	   parsing/parsing_textures.c \
+	   parsing/parsing_textures2.c \
 	   parsing/checkfile.c \
 	   Utils/ft_strcmp.c \
 	   Utils/ft_atoi.c \
@@ -48,6 +49,8 @@ SRCS = gnl/get_next_line.c \
 	   Utils/ft_isdigit.c \
 	   Utils/ft_strdup.c \
 	   Utils/ft_strncmp.c \
+	   Utils/ft_calloc.c \
+	   Utils/ft_substr.c \
 	   cub3d.c \
 
 OBJS = ${SRCS:.c=.o}
