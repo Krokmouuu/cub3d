@@ -6,7 +6,7 @@
 /*   By: bleroy <bleroy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/18 19:38:35 by bleroy            #+#    #+#             */
-/*   Updated: 2022/06/02 17:23:10 by bleroy           ###   ########.fr       */
+/*   Updated: 2022/06/07 17:11:45 by bleroy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@ void	init(t_game *game, char **argv)
 	game->text.floor = NULL;
 	game->text.ceiling = NULL;
 }
-
 
 int	openmap(char **argv, t_game *game)
 {

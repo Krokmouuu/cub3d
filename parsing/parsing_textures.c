@@ -6,7 +6,7 @@
 /*   By: bleroy <bleroy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/22 14:20:49 by bleroy            #+#    #+#             */
-/*   Updated: 2022/06/02 17:22:06 by bleroy           ###   ########.fr       */
+/*   Updated: 2022/06/07 17:11:41 by bleroy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,34 +30,33 @@ int	*get_color(char *str)
 {
 	int		i;
 	char	**tab;
-	int		j;
 	int		check;
 	int		*tablo;
 
 	i = 1;
-	j = -1;
-	tablo = malloc((3) * sizeof(int)); 
+	tablo = malloc((3) * sizeof(int));
 	while (str[i] && str[i] == ' ')
 		i++;
+	if (checkstr(&str[i]) == 1)
+		error("Wrong RGB values\n");
 	tab = ft_split(&str[i], ',');
-	while (tab[++j])
+	i = -1;
+	while (tab[++i])
 	{
 		check = -1;
-		while (tab[j][++check])
-			if (tab[j][check] == ' ' || alpha(tab[j][check]) == 1 || j >= 3)
+		while (tab[i][++check])
+			if (tab[i][check] == ' ' || checktab(tab[i][check]) == 1)
 				error("Wrong RGB values\n");
 	}
 	tablo[0] = ft_atoi(tab[0]);
 	tablo[1] = ft_atoi(tab[1]);
 	tablo[2] = ft_atoi(tab[2]);
+	getouttab(tab);
 	return (tablo);
 }
 
 void	get_texture3(char *str, t_game *game)
 {
-	int	i;
-
-	i = 0;
 	if (ft_strncmp(str, "NO ", 3) == 0)
 		game->text.n = get_texture_2(str);
 	if (ft_strncmp(str, "EA ", 3) == 0)
@@ -82,10 +81,10 @@ void	get_texture3(char *str, t_game *game)
 
 char	*get_texture_2(char *str)
 {
-	int	i;
-	int	j;
+	int		i;
+	int		j;
 	char	*newstr;
-	
+
 	i = 0;
 	while (str[i] != ' ' && str[i])
 		i++;
@@ -97,7 +96,10 @@ char	*get_texture_2(char *str)
 		error("Error texture\n");
 	j -= 5;
 	if (ft_strcmp(&newstr[j], ".xpm\n") != 0)
+	{
+		free (newstr);
 		return (NULL);
+	}
 	return (newstr);
 }
 

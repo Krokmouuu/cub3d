@@ -6,7 +6,7 @@
 /*   By: bleroy <bleroy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/22 17:44:46 by bleroy            #+#    #+#             */
-/*   Updated: 2022/06/02 16:47:12 by bleroy           ###   ########.fr       */
+/*   Updated: 2022/06/07 17:25:16 by bleroy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,14 +17,19 @@ int	getmap(int fd)
 	int		i;
 	char	*str;
 	int		j;
-	
+
 	j = 1;
-	i = 0;
 	while (1)
 	{
+		i = 0;
 		str = get_next_line(fd);
-		while (str[i] == '\t' || str[i] == ' ')
-			i++;
+		if (str[i] == '\t' || str[i] == ' ')
+		{
+			while (str[i] == '\t' || str[i] == ' ')
+				i++;
+			if (str[i] != '1')
+				error("Error Map\n");
+		}
 		if (ft_strncmp(&str[i], "1", 1) == 0)
 			break ;
 		j++;
@@ -69,7 +74,6 @@ int	checkvalid(int len, t_game *game)
 		error("Error File\n");
 	len = getmap(fd);
 	close (fd);
-	printf("Len -> %d\n", len);
 	fd = open(game->file, O_RDONLY);
 	if (fd < 0)
 		error("Error File\n");

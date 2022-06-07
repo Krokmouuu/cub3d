@@ -6,7 +6,7 @@
 /*   By: bleroy <bleroy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/18 16:44:13 by bleroy            #+#    #+#             */
-/*   Updated: 2022/06/02 16:47:00 by bleroy           ###   ########.fr       */
+/*   Updated: 2022/06/07 17:32:12 by bleroy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,8 @@ typedef struct s_game
 {
 	char		*file;
 	char		**map;
+	void		*win;
+	void		*mlx;
 	int			x;
 	int			y;
 	t_texture	text;
@@ -59,6 +61,12 @@ int		*get_color(char *str);
 int		checkvalid(int len, t_game *game);
 int		checkfile(t_game *game);
 int		checkmap(int len, t_game *game);
+int		checkstr(char *str);
+int		checktab(char c);
+void	getouttab(char **tab);
+void	scale(t_game *game);
+int		getmap(int fd);
+void	parsing_map(t_game *game);
 
 //* **************** Utils ****************
 int		ft_strcmp(char *s1, char *s2);
