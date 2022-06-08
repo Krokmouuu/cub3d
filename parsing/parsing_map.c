@@ -6,7 +6,7 @@
 /*   By: bleroy <bleroy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/07 14:09:41 by bleroy            #+#    #+#             */
-/*   Updated: 2022/06/08 14:29:22 by bleroy           ###   ########.fr       */
+/*   Updated: 2022/06/08 15:56:49 by bleroy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,13 +67,12 @@ void	parsing_map(t_game *game)
 	i = -1;
 	scale(game);
 	game->map = ft_calloc(game->y, sizeof(char *));
-	while (++i < game->y - 1)
-		game->map[i] = ft_calloc(game->x, sizeof(char));
 	if (!game->map)
 		error("Error\n");
 	fill_map(game);
 	check_first_and_last(game);
 	valid_map(game);
+	get_player(game);
 }
 
 void	scale(t_game *game)

@@ -6,7 +6,7 @@
 /*   By: bleroy <bleroy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/18 16:44:13 by bleroy            #+#    #+#             */
-/*   Updated: 2022/06/08 13:59:21 by bleroy           ###   ########.fr       */
+/*   Updated: 2022/06/08 17:53:49 by bleroy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,13 @@ typedef struct s_texture
 	int		*ceiling;
 }	t_texture;
 
+typedef struct s_player
+{
+	int		x;
+	int		y;
+	char	direction;
+}	t_player;
+
 typedef struct s_game
 {
 	char		*file;
@@ -49,6 +56,7 @@ typedef struct s_game
 	int			x;
 	int			y;
 	t_texture	text;
+	t_player	player;
 }	t_game;
 
 //* **************** Parsing ****************
@@ -69,6 +77,7 @@ int		getmap(int fd);
 void	parsing_map(t_game *game);
 void	check_first_and_last(t_game *game);
 void	valid_map(t_game *game);
+void	get_player(t_game *game);
 
 //* **************** Utils ****************
 int		ft_strcmp(char *s1, char *s2);

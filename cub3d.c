@@ -6,7 +6,7 @@
 /*   By: bleroy <bleroy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/18 16:45:00 by bleroy            #+#    #+#             */
-/*   Updated: 2022/06/08 13:35:38 by bleroy           ###   ########.fr       */
+/*   Updated: 2022/06/08 17:50:12 by bleroy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	error(char *str)
 	i = 0;
 	while (str[i])
 		write(1, &str[i++], 1);
-	// system("leaks cub3d");
+//	system("leaks cub3d");
 	exit (0);
 }
 
@@ -49,6 +49,6 @@ int	main(int argc, char **argv)
 	valid(argc, argv);
 	openmap(argv, &game);
 	parsing_map(&game);
-	// system("leaks cub3d");
+//	system("leaks cub3d");
 	return (0);
 }
