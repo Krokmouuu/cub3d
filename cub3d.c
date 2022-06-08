@@ -6,7 +6,7 @@
 /*   By: bleroy <bleroy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/18 16:45:00 by bleroy            #+#    #+#             */
-/*   Updated: 2022/06/08 17:50:12 by bleroy           ###   ########.fr       */
+/*   Updated: 2022/06/08 18:16:51 by bleroy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ int	main(int argc, char **argv)
 	valid(argc, argv);
 	openmap(argv, &game);
 	parsing_map(&game);
+	start(&game);
 //	system("leaks cub3d");
 	return (0);
 }

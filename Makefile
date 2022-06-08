@@ -6,7 +6,7 @@
 #    By: bleroy <bleroy@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/18 18:32:58 by bleroy            #+#    #+#              #
-#    Updated: 2022/06/08 13:23:28 by bleroy           ###   ########.fr        #
+#    Updated: 2022/06/08 18:21:56 by bleroy           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -44,6 +44,7 @@ SRCS = gnl/get_next_line.c \
 	   parsing/checkfile.c \
 	   parsing/parsing_map.c \
 	   parsing/parsing_map2.c \
+	   game/startcub3d.c \
 	   Utils/ft_strcmp.c \
 	   Utils/ft_atoi.c \
 	   Utils/ft_split.c \

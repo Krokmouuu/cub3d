@@ -6,7 +6,7 @@
 /*   By: bleroy <bleroy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/18 16:44:13 by bleroy            #+#    #+#             */
-/*   Updated: 2022/06/08 17:53:49 by bleroy           ###   ########.fr       */
+/*   Updated: 2022/06/08 18:25:37 by bleroy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@
 # include <fcntl.h>
 
 # define UP 13
+# define ESCAPE 53
 # define LEFT 0
 # define DOWN 1
 # define RIGHT 2
@@ -51,13 +52,16 @@ typedef struct s_game
 {
 	char		*file;
 	char		**map;
-	void		*win;
 	void		*mlx;
+	void		*win;
 	int			x;
 	int			y;
 	t_texture	text;
 	t_player	player;
 }	t_game;
+
+//* **************** Game ****************
+void	start(t_game *game);
 
 //* **************** Parsing ****************
 int		openmap(char **argv, t_game *game);
