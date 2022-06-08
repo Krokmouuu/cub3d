@@ -6,7 +6,7 @@
 #    By: bleroy <bleroy@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/18 18:32:58 by bleroy            #+#    #+#              #
-#    Updated: 2022/06/07 17:36:26 by bleroy           ###   ########.fr        #
+#    Updated: 2022/06/08 13:23:28 by bleroy           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -43,6 +43,7 @@ SRCS = gnl/get_next_line.c \
 	   parsing/parsing_textures2.c \
 	   parsing/checkfile.c \
 	   parsing/parsing_map.c \
+	   parsing/parsing_map2.c \
 	   Utils/ft_strcmp.c \
 	   Utils/ft_atoi.c \
 	   Utils/ft_split.c \
@@ -60,7 +61,7 @@ NAME = cub3d
 
 CC = @cc
 
-CFLAGS = -Wall -Werror -Wextra -g -fsanitize=address
+CFLAGS = -Wall -Werror -Wextra
 
 RM = @rm -f
 

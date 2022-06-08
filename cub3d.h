@@ -6,7 +6,7 @@
 /*   By: bleroy <bleroy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/18 16:44:13 by bleroy            #+#    #+#             */
-/*   Updated: 2022/06/07 17:32:12 by bleroy           ###   ########.fr       */
+/*   Updated: 2022/06/08 13:59:21 by bleroy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,8 @@ void	getouttab(char **tab);
 void	scale(t_game *game);
 int		getmap(int fd);
 void	parsing_map(t_game *game);
+void	check_first_and_last(t_game *game);
+void	valid_map(t_game *game);
 
 //* **************** Utils ****************
 int		ft_strcmp(char *s1, char *s2);
