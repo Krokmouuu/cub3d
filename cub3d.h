@@ -6,7 +6,7 @@
 /*   By: bleroy <bleroy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/18 16:44:13 by bleroy            #+#    #+#             */
-/*   Updated: 2022/06/08 18:25:37 by bleroy           ###   ########.fr       */
+/*   Updated: 2022/06/09 17:25:06 by bleroy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,10 +33,10 @@
 
 typedef struct s_texture
 {
-	char	*n;
-	char	*w;
-	char	*s;
-	char	*e;
+	void	*n;
+	void	*w;
+	void	*s;
+	void	*e;
 	int		*floor;
 	int		*ceiling;
 }	t_texture;
@@ -48,16 +48,25 @@ typedef struct s_player
 	char	direction;
 }	t_player;
 
+typedef struct s_images
+{
+	void	*img;
+	char		*addr;
+	int		bits;
+	int		len;
+}	t_images;
+
 typedef struct s_game
 {
-	char		*file;
-	char		**map;
 	void		*mlx;
 	void		*win;
+	char		*file;
+	char		**map;
 	int			x;
 	int			y;
 	t_texture	text;
 	t_player	player;
+	t_images	images;
 }	t_game;
 
 //* **************** Game ****************
@@ -82,6 +91,7 @@ void	parsing_map(t_game *game);
 void	check_first_and_last(t_game *game);
 void	valid_map(t_game *game);
 void	get_player(t_game *game);
+void	check_wall(t_game *game);
 
 //* **************** Utils ****************
 int		ft_strcmp(char *s1, char *s2);

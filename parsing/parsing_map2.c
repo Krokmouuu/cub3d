@@ -6,7 +6,7 @@
 /*   By: bleroy <bleroy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 12:38:53 by bleroy            #+#    #+#             */
-/*   Updated: 2022/06/08 18:07:32 by bleroy           ###   ########.fr       */
+/*   Updated: 2022/06/09 17:30:46 by bleroy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,10 +73,11 @@ void	valid_map(t_game *game)
 		while (game->map[y][x] != '\n')
 		{
 			if ((game->map[y][x] == '0') &&
-				(game->map[y - 1][x] == ' ' || game->map[y - 1][x] == '\0'))
+				(game->map[y - 1][x] == ' ' || game->map[y - 1][x] == '\n'))
 				error("Invalid map\n");
 			if (game->map[y][x] == '0' &&
-				(game->map[y + 1][x] == ' ' || game->map[y + 1][x] == '\0'))
+				(game->map[y + 1][x] == ' ' || game->map[y + 1][x] == '\0'
+					|| game->map[y + 1][x] == '\n'))
 				error("Invalid map\n");
 			if (game->map[y][x] == '0' &&
 				(game->map[y][x - 1] == ' ' || game->map[y][x - 1] == '\n'))
@@ -109,5 +110,30 @@ void	check_first_and_last(t_game *game)
 			&& game->map[game->y - 1][x] != ' ')
 			error("Invalid map\n");
 		x++;
+	}
+}
+
+void	check_wall(t_game *game)
+{
+	int	x;
+	int	y;
+	int	i;
+
+	x = 0;
+	y = -1;
+	while (++y < game->y)
+	{
+		if (game->map[y][0] == '\n')
+			error("Invalid map\n");
+		else
+		{
+			i = 0;
+			while (game->map[y][i] == ' ' || game->map[y][i] == '\t')
+				i++;
+			if (game->map[y][i] != '1')
+				error("Invalid Map\n");
+			if (game->map[y][i] == '1' && game->map[y][i + 1] == '\n')
+				error("Invalid Map\n");
+		}
 	}
 }

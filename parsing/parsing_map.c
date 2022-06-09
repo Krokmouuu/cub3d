@@ -6,7 +6,7 @@
 /*   By: bleroy <bleroy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/07 14:09:41 by bleroy            #+#    #+#             */
-/*   Updated: 2022/06/08 15:56:49 by bleroy           ###   ########.fr       */
+/*   Updated: 2022/06/09 17:19:49 by bleroy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,10 +36,36 @@ void	get_x_y(int fd, t_game *game)
 	game->x = i - 1;
 }
 
+void	check_map(t_game *game)
+{
+	int	x;
+	int	y;
+	
+	x = 0;
+	y = -1;
+	while (++y < game->y - 1)
+	{
+		x = -1;
+		while (game->map[y][++x] != '\n')
+		{
+			if (game->map[y][x] == '1' || game->map[y][x] == '0')
+				continue ;
+			else if (game->map[y][x] == 'N' || game->map[y][x] == 'E'
+				|| game->map[y][x] == 'S' || game->map[y][x] == 'W')
+				continue ;
+			else if (game->map[y][x] == ' ')
+				continue ;
+			else if (game->map[y][x] == '\n')
+				continue ;
+			else
+				error("Unknow character\n");
+		}
+	}
+}
+
 void	fill_map(t_game *game)
 {
 	int		i;
-	int		j;
 	int		fd;
 	char	*str;
 
@@ -53,7 +79,6 @@ void	fill_map(t_game *game)
 		free (str);
 		i--;
 	}
-	j = 0;
 	i = -1;
 	while (++i < game->y)
 		game->map[i] = get_next_line(fd);
@@ -62,14 +87,13 @@ void	fill_map(t_game *game)
 
 void	parsing_map(t_game *game)
 {
-	int	i;
-
-	i = -1;
 	scale(game);
 	game->map = ft_calloc(game->y, sizeof(char *));
 	if (!game->map)
 		error("Error\n");
 	fill_map(game);
+	check_map(game);
+	check_wall(game);
 	check_first_and_last(game);
 	valid_map(game);
 	get_player(game);
