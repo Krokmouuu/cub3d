@@ -6,7 +6,7 @@
 /*   By: bleroy <bleroy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/18 16:44:13 by bleroy            #+#    #+#             */
-/*   Updated: 2022/06/09 17:25:06 by bleroy           ###   ########.fr       */
+/*   Updated: 2022/06/09 17:54:28 by bleroy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,9 +51,10 @@ typedef struct s_player
 typedef struct s_images
 {
 	void	*img;
-	char		*addr;
+	char	*addr;
 	int		bits;
-	int		len;
+	int		line;
+	int		endian;
 }	t_images;
 
 typedef struct s_game
