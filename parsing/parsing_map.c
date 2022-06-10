@@ -88,7 +88,7 @@ void	fill_map(t_game *game)
 void	parsing_map(t_game *game)
 {
 	scale(game);
-	game->map = ft_calloc(game->y, sizeof(char *));
+	game->map = malloc(game->y * sizeof(char *));
 	if (!game->map)
 		error("Error\n");
 	fill_map(game);
