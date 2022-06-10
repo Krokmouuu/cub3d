@@ -6,7 +6,7 @@
 /*   By: bleroy <bleroy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/22 14:20:49 by bleroy            #+#    #+#             */
-/*   Updated: 2022/06/07 17:11:41 by bleroy           ###   ########.fr       */
+/*   Updated: 2022/06/10 18:36:54 by bleroy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,8 @@ int	*get_color(char *str)
 
 void	get_texture3(char *str, t_game *game)
 {
+	if (str == NULL)
+		error("Invalid map\n");
 	if (ft_strncmp(str, "NO ", 3) == 0)
 		game->text.n = get_texture_2(str);
 	if (ft_strncmp(str, "EA ", 3) == 0)

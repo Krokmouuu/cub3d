@@ -6,7 +6,7 @@
 /*   By: bleroy <bleroy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/07 14:09:41 by bleroy            #+#    #+#             */
-/*   Updated: 2022/06/09 17:41:56 by bleroy           ###   ########.fr       */
+/*   Updated: 2022/06/10 18:18:02 by bleroy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ void	check_map(t_game *game)
 			else if (game->map[y][x] == 'N' || game->map[y][x] == 'E'
 				|| game->map[y][x] == 'S' || game->map[y][x] == 'W')
 				continue ;
-			else if (game->map[y][x] == ' ')
+			else if (game->map[y][x] == ' ' || game->map[y][x] == '\t')
 				continue ;
 			else if (game->map[y][x] == '\n')
 				continue ;
