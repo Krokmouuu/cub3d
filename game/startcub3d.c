@@ -6,7 +6,7 @@
 /*   By: bleroy <bleroy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 18:21:21 by bleroy            #+#    #+#             */
-/*   Updated: 2022/06/10 12:59:32 by bleroy           ###   ########.fr       */
+/*   Updated: 2022/06/10 15:36:37 by bleroy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,23 +29,14 @@
 // 		game->images.img = mlx_new_image(game->mlx, 1920, 1080);
 // 		game->images.addr = mlx_get_data_addr(game->images.img,
 // 			&game->images.bits, &game->images.line, &game->images.endian);
-// 		x = -1;
-// 		y = -1;
-// 		while (++x != 30 && ++y != 30)
-// 		{
-// 			my_mlx_pixel_put(game, x, 1, 0x00FF0000);
-// 			my_mlx_pixel_put(game, x, 30, 0x00FF0000);
-// 			my_mlx_pixel_put(game, 1, y, 0x00FF0000);
-// 			my_mlx_pixel_put(game, 30, y, 0x00FF0000);
-// 		}
-// 		mlx_put_image_to_window(game->mlx, game->win, game->images.img, 0, 0);
+// 		my_mlx_pixel_put(game, x, y, 0x0000FF00);
 // 	}
 // 	else if (game->map[y][x] == '0')
 // 	{
-// 		game->images.img = mlx_new_image(game->mlx, y, x);
+// 		game->images.img = mlx_new_image(game->mlx, 1920, 1080);
 // 		game->images.addr = mlx_get_data_addr(game->images.img,
 // 			&game->images.bits, &game->images.line, &game->images.endian);
-// 		mlx_put_image_to_window(game->mlx, game->win, game->images.img, 0, 0);
+// 		my_mlx_pixel_put(game, x, y, 0x0000FF00);
 // 	}
 // }
 
@@ -57,11 +48,24 @@
 // 	y = 0;
 // 	while (y < game->y)
 // 	{
-// 		x = 0;
-// 		while (game->map[y][x])
+// 		x = -1;
+// 		while (game->map[y][++x])
 // 		{
-// 			print_map(game, y, x);
-// 			x++;
+// 			// if (game->map[y][x] == '1')
+// 			// {
+// 			// 	game->images.img = mlx_new_image(game->mlx, 1920, 1080);
+// 			// 	game->images.addr = mlx_get_data_addr(game->images.img,
+// 			// 		&game->images.bits, &game->images.line, &game->images.endian);
+// 			// 	my_mlx_pixel_put(game, x, y, 0x0000FF00);
+// 			// }
+// 			if (game->map[y][x] == '0')
+// 			{
+// 				game->images.img = mlx_new_image(game->mlx, 1920, 1080);
+// 				game->images.addr = mlx_get_data_addr(game->images.img,
+// 					&game->images.bits, &game->images.line, &game->images.endian);
+// 				my_mlx_pixel_put(game, x, y, 0x0000FF00);
+// 			}
+// 			mlx_put_image_to_window(game->mlx, game->win, &game->images.img, 0, 0);
 // 		}
 // 		y++;
 // 	}
