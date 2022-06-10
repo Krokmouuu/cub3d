@@ -6,7 +6,7 @@
 /*   By: bleroy <bleroy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/18 16:44:13 by bleroy            #+#    #+#             */
-/*   Updated: 2022/06/09 17:54:28 by bleroy           ###   ########.fr       */
+/*   Updated: 2022/06/10 12:06:58 by bleroy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,8 @@ typedef struct s_images
 	int		bits;
 	int		line;
 	int		endian;
+	int		pos_x;
+	int		pos_y;
 }	t_images;
 
 typedef struct s_game
@@ -72,6 +74,8 @@ typedef struct s_game
 
 //* **************** Game ****************
 void	start(t_game *game);
+int		keypressed(int key, t_game *game);
+int		closed(t_game *game);
 
 //* **************** Parsing ****************
 int		openmap(char **argv, t_game *game);
