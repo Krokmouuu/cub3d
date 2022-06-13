@@ -6,7 +6,7 @@
 #    By: bleroy <bleroy@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/18 18:32:58 by bleroy            #+#    #+#              #
-#    Updated: 2022/06/10 12:26:48 by bleroy           ###   ########.fr        #
+#    Updated: 2022/06/13 17:06:33 by bleroy           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -48,6 +48,7 @@ SRCS = gnl/get_next_line.c \
 	   game/keys.c \
 	   Utils/ft_strcmp.c \
 	   Utils/ft_atoi.c \
+	   Utils/helpers.c \
 	   Utils/ft_split.c \
 	   Utils/ft_isalpha.c \
 	   Utils/ft_isdigit.c \
