@@ -6,7 +6,7 @@
 /*   By: bleroy <bleroy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/18 16:44:13 by bleroy            #+#    #+#             */
-/*   Updated: 2022/06/13 17:05:47 by bleroy           ###   ########.fr       */
+/*   Updated: 2022/06/13 17:10:53 by bleroy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,9 @@
 # define RIGHT 2
 # define LEFT_ARROW 123
 # define RIGHT_ARROW 124
+# define RED 0x009900FF
+# define GREEN 0x00FF0099
+# define WHITE 0x0099FF00
 
 typedef struct s_texture
 {
