@@ -30,6 +30,9 @@
 # define RIGHT 2
 # define LEFT_ARROW 123
 # define RIGHT_ARROW 124
+# define RED 0x009900FF
+# define GREEN 0x00FF0099
+# define WHITE 0x0099FF00
 
 typedef struct s_texture
 {

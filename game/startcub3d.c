@@ -14,15 +14,12 @@
 
 void	put_color(t_game *game, int base_x, int base_y, int color)
 {
-	if (color == 0 && game->images.addr[base_y * 1920 + base_x] != 0x00FF0000
-		&& game->images.addr[base_y * 1920 + base_x] != 0x00FFFFFF)
-		game->images.addr[base_y * 1920 + base_x] = 0x0000FF00;
-	if (color == 1 && game->images.addr[base_y * 1920 + base_x] != 0x0000FF00
-		&& game->images.addr[base_y * 1920 + base_x] != 0x00FFFFFF)
-		game->images.addr[base_y * 1920 + base_x] = 0x00FF0000;
-	if (color == 2 && game->images.addr[base_y * 1920 + base_x] != 0x0000FF00
-		&& game->images.addr[base_y * 1920 + base_x] != 0x00FF0000)
-		game->images.addr[base_y * 1920 + base_x] = 0x00FFFFFF;
+	if (color == 0 && game->images.addr[base_y * 1920 + base_x] == 0)
+		game->images.addr[base_y * 1920 + base_x] = GREEN;
+	else if (color == 1 && game->images.addr[base_y * 1920 + base_x] == 0)
+		game->images.addr[base_y * 1920 + base_x] = RED;
+	else if (color == 2 && game->images.addr[base_y * 1920 + base_x] == 0)
+		game->images.addr[base_y * 1920 + base_x] = WHITE;
 }
 
 void	draw_cube(t_game *game, int y, int x, int color)
@@ -33,32 +30,29 @@ void	draw_cube(t_game *game, int y, int x, int color)
 	base_x = x;
 	base_y = y * 10;
 	if (x == 0)
-		x = 1;
+		base_x = 0;
 	if (y == 0)
-	{
-		y = 0;
 		base_y = 1;
-	}
 	while (base_y <= y * 10 + 10)
 	{
-		while (base_x <= x * 10)
+		while (base_x <= x * 10 + 10)
 		{
 			put_color(game, base_x, base_y, color);
 			base_x++;
 		}
-		base_x = 0;
+		base_x = x;
 		base_y++;
 	}
 }
 
 void	print_map(t_game *game, int y, int x)
 {
-	if (game->map[y][x] == '1')
+	if (game->map[y][x] == '0')
+		draw_cube(game, y, x, 0);
+	else if (game->map[y][x] == '1')
 		draw_cube(game, y, x, 1);
 	else if (game->map[y][x] == 'N')
 		draw_cube(game, y, x, 2);
-	else if (game->map[y][x] == '0')
-		draw_cube(game, y, x, 0);
 	else
 		return ;
 }
