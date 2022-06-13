@@ -6,7 +6,7 @@
 /*   By: bleroy <bleroy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 12:38:53 by bleroy            #+#    #+#             */
-/*   Updated: 2022/06/13 17:08:23 by bleroy           ###   ########.fr       */
+/*   Updated: 2022/06/13 18:02:24 by bleroy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,8 +72,6 @@ void	valid_map(t_game *game)
 		x = 0;
 		while (game->map[y][x] != '\n')
 		{
-			if (game->map[y][x] == '0')
-				helper_nul(game, y, x);
 			if (game->map[y][x] == '0' &&
 				(game->map[y][x - 1] == ' ' || game->map[y][x - 1] == '\n'))
 				error("Invalid map\n");
@@ -133,12 +131,6 @@ void	check_wall(t_game *game)
 				x++;
 			if ((game->map[y][x] != '1') || (game->map[y][x] == '1' &&
 				game->map[y][x + 1] == '\n'))
-				error("Invalid map\n");
-			if (game->map[y][ft_strlen(game->map[y]) - 2] == '1'
-				&& game->map[y][ft_strlen(game->map[y]) - 3] == ' '
-					&& (ft_strlen(game->map[y - 1]) < ft_strlen(game->map[y])
-						|| ft_strlen(game->map[y + 1])
-							< ft_strlen(game->map[y])))
 				error("Invalid map\n");
 		}
 	}
