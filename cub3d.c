@@ -19,7 +19,6 @@ int	error(char *str)
 	i = 0;
 	while (str[i])
 		write(1, &str[i++], 1);
-//	system("leaks cub3d");
 	exit (0);
 }
 
@@ -50,6 +49,5 @@ int	main(int argc, char **argv)
 	openmap(argv, &game);
 	parsing_map(&game);
 	start(&game);
-//	system("leaks cub3d");
 	return (0);
 }

@@ -12,26 +12,50 @@
 
 #include "../cub3d.h"
 
-//* je voulais print des carrés pour chaque 1 et 0 mais ca marche pas
-
-void	my_mlx_pixel_put(t_game *game, int x, int y, int color)
+void	put_color(t_game *game, int base_x, int base_y, int color)
 {
-	char	*dst;
+	if (color == 0 && game->images.addr[base_y * 1920 + base_x] != 0x00FF0000
+		&& game->images.addr[base_y * 1920 + base_x] != 0x00FFFFFF)
+		game->images.addr[base_y * 1920 + base_x] = 0x0000FF00;
+	if (color == 1 && game->images.addr[base_y * 1920 + base_x] != 0x0000FF00
+		&& game->images.addr[base_y * 1920 + base_x] != 0x00FFFFFF)
+		game->images.addr[base_y * 1920 + base_x] = 0x00FF0000;
+	if (color == 2 && game->images.addr[base_y * 1920 + base_x] != 0x0000FF00
+		&& game->images.addr[base_y * 1920 + base_x] != 0x00FF0000)
+		game->images.addr[base_y * 1920 + base_x] = 0x00FFFFFF;
+}
 
-	dst = game->images.addr + (y * game->images.line + x * (game->images.bits / 8));
-	*(unsigned int*)dst = color;
+void	draw_cube(t_game *game, int x, int y, int color)
+{
+	int	base_y;
+	int	base_x;
+
+	base_x = x;
+	base_y = y;
+	if (x == 0)
+		x = 1;
+	if (y == 0)
+		y = 1;
+	while (base_y <= y * 30)
+	{
+		while (base_x <= x * 30)
+		{
+			put_color(game, base_x, base_y, color);
+			base_x++;
+		}
+		base_x = 0;
+		base_y++;
+	}
 }
 
 void	print_map(t_game *game, int y, int x)
 {
 	if (game->map[y][x] == '1')
-	{
-		my_mlx_pixel_put(game, x, y, 0x0000FF00);
-	}
+		draw_cube(game, x, y, 1);
+	else if (game->map[y][x] == 'N')
+		draw_cube(game, x, y, 2);
 	else if (game->map[y][x] == '0')
-	{
-		my_mlx_pixel_put(game, x, y, 0x00FF0000);
-	}
+		draw_cube(game, x, y, 0);
 	else
 		return ;
 }
@@ -42,8 +66,8 @@ void	start_check_map(t_game *game)
 	int	y;
 
 	y = 0;
-	game->images.img = mlx_new_image(game->mlx, 800, 600);
-	game->images.addr = mlx_get_data_addr(game->images.img,
+	game->images.img = mlx_new_image(game->mlx, 1920, 1080);
+	game->images.addr = (int *)mlx_get_data_addr(game->images.img,
 			&game->images.bits, &game->images.line, &game->images.endian);
 	while (y < game->y)
 	{
@@ -54,13 +78,13 @@ void	start_check_map(t_game *game)
 		}
 		y++;
 	}
-	mlx_put_image_to_window(game->mlx, game->win, game->images.img, 0, 0);
+	mlx_put_image_to_window(game->mlx, game->win, game->images.img, 300, 100);
 }
 
 void	start(t_game *game)
 {
 	game->mlx = mlx_init();
-	game->win = mlx_new_window(game->mlx, 800, 600, "tuc3D");
+	game->win = mlx_new_window(game->mlx, 1920, 1080, "tuc3D");
 	start_check_map(game);
 	mlx_hook(game->win, 2, 1L << 0, keypressed, game);
 	mlx_hook(game->win, 17, 1L << 0, closed, game);

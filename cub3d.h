@@ -51,7 +51,7 @@ typedef struct s_player
 typedef struct s_images
 {
 	void	*img;
-	char	*addr;
+	int		*addr;
 	int		bits;
 	int		line;
 	int		endian;
