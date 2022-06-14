@@ -46,8 +46,8 @@ typedef struct s_texture
 
 typedef struct s_player
 {
-	int		x;
-	int		y;
+	double		x;
+	double		y;
 	char	direction;
 }	t_player;
 
@@ -78,7 +78,12 @@ typedef struct s_game
 //* **************** Game ****************
 void	start(t_game *game);
 int		keypressed(int key, t_game *game);
+void	start_check_map(t_game *game);
 int		closed(t_game *game);
+void	draw_cube(t_game *game, int y, int x, int color);
+void	draw_player(t_game *game, double x, double y, int i);
+void	draw_vector_x(t_game *game, double x, double y);
+void	draw_vector_y(t_game *game, double x, double y);
 
 //* **************** Parsing ****************
 int		openmap(char **argv, t_game *game);

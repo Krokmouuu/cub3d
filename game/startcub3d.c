@@ -33,9 +33,9 @@ void	draw_cube(t_game *game, int y, int x, int color)
 		base_x = 0;
 	if (y == 0)
 		base_y = 1;
-	while (base_y <= y * 10 + 10)
+	while (base_y <= y * 20 + 10)
 	{
-		while (base_x <= x * 10 + 10)
+		while (base_x <= x * 20 + 10)
 		{
 			put_color(game, base_x, base_y, color);
 			base_x++;
@@ -52,7 +52,10 @@ void	print_map(t_game *game, int y, int x)
 	else if (game->map[y][x] == '1')
 		draw_cube(game, y, x, 1);
 	else if (game->map[y][x] == 'N')
-		draw_cube(game, y, x, 2);
+	{
+		game->player.x = x * 20;
+		game->player.y = y * 20;
+	}
 	else
 		return ;
 }
@@ -75,6 +78,7 @@ void	start_check_map(t_game *game)
 		}
 		y++;
 	}
+	draw_player(game, game->player.x, game->player.y, 0);
 	mlx_put_image_to_window(game->mlx, game->win, game->images.img, 100, 100);
 }
 
