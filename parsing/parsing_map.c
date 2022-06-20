@@ -6,7 +6,7 @@
 /*   By: bleroy <bleroy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/07 14:09:41 by bleroy            #+#    #+#             */
-/*   Updated: 2022/06/10 18:18:02 by bleroy           ###   ########.fr       */
+/*   Updated: 2022/06/13 16:50:05 by bleroy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,8 +92,8 @@ void	parsing_map(t_game *game)
 	if (!game->map)
 		error("Error\n");
 	fill_map(game);
-	check_map(game);
 	check_wall(game);
+	check_map(game);
 	check_first_and_last(game);
 	valid_map(game);
 	get_player(game);

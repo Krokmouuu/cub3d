@@ -6,7 +6,7 @@
 /*   By: bleroy <bleroy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 12:38:53 by bleroy            #+#    #+#             */
-/*   Updated: 2022/06/10 18:21:15 by bleroy           ###   ########.fr       */
+/*   Updated: 2022/06/13 18:02:24 by bleroy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,13 @@
 
 void	get_player2(t_game *game, int y, int x, char c)
 {
-	if (game->map[y - 1][x] != '0' && game->map[y - 1][x] != '1')
-		error("Invalid map\n");
-	if (game->map[y + 1][x] != '0' && game->map[y + 1][x] != '1')
-		error("Invalid map\n");
 	if (game->map[y][x - 1] != '0' && game->map[y][x - 1] != '1')
 		error("Invalid map\n");
 	if (game->map[y][x + 1] != '0' && game->map[y][x + 1] != '1')
+		error("Invalid map\n");
+	if (game->map[y - 1][x] != '0' && game->map[y - 1][x] != '1')
+		error("Invalid map\n");
+	if (game->map[y + 1][x] != '0' && game->map[y + 1][x] != '1')
 		error("Invalid map\n");
 	if (c == 'N')
 		game->player.direction = 'N';
@@ -72,18 +72,18 @@ void	valid_map(t_game *game)
 		x = 0;
 		while (game->map[y][x] != '\n')
 		{
-			if ((game->map[y][x] == '0') &&
-				(game->map[y - 1][x] == ' ' || game->map[y - 1][x] == '\n'))
-				error("Invalid map\n");
-			if (game->map[y][x] == '0' &&
-				(game->map[y + 1][x] == ' ' || game->map[y + 1][x] == '\0'
-					|| game->map[y + 1][x] == '\n'))
-				error("Invalid map\n");
 			if (game->map[y][x] == '0' &&
 				(game->map[y][x - 1] == ' ' || game->map[y][x - 1] == '\n'))
 				error("Invalid map\n");
 			if (game->map[y][x] == '0' &&
 				(game->map[y][x - 1] == ' ' || game->map[y][x + 1] == '\n'))
+				error("Invalid map\n");
+			if (game->map[y][x] == '0' &&
+				(game->map[y - 1][x] == ' ' || game->map[y - 1][x] == '\n'))
+				error("Invalid map\n");
+			if (game->map[y][x] == '0' &&
+				(game->map[y + 1][x] == ' ' || game->map[y + 1][x] == '\0'
+					|| game->map[y + 1][x] == '\n'))
 				error("Invalid map\n");
 			x++;
 		}
@@ -117,7 +117,6 @@ void	check_wall(t_game *game)
 {
 	int	x;
 	int	y;
-	int	i;
 
 	x = 0;
 	y = -1;
@@ -127,13 +126,12 @@ void	check_wall(t_game *game)
 			error("Invalid map\n");
 		else
 		{
-			i = 0;
-			while (game->map[y][i] == ' ' || game->map[y][i] == '\t')
-				i++;
-			if (game->map[y][i] != '1')
-				error("Invalid Map\n");
-			if (game->map[y][i] == '1' && game->map[y][i + 1] == '\n')
-				error("Invalid Map\n");
+			x = 0;
+			while (game->map[y][x] == ' ' || game->map[y][x] == '\t')
+				x++;
+			if ((game->map[y][x] != '1') || (game->map[y][x] == '1' &&
+				game->map[y][x + 1] == '\n'))
+				error("Invalid map\n");
 		}
 	}
 }
