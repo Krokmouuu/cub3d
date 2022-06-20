@@ -46,6 +46,7 @@ SRCS = gnl/get_next_line.c \
 	   parsing/parsing_map2.c \
 	   game/startcub3d.c \
 	   game/keys.c \
+	   game/move.c \
 	   Utils/ft_strcmp.c \
 	   Utils/ft_atoi.c \
 	   Utils/ft_split.c \

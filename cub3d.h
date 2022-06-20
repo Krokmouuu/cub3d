@@ -23,6 +23,7 @@
 # include <string.h>
 # include <fcntl.h>
 
+# define PI 3.14159265359
 # define UP 13
 # define ESCAPE 53
 # define LEFT 0
@@ -48,7 +49,10 @@ typedef struct s_player
 {
 	double		x;
 	double		y;
-	char	direction;
+	double		delta_x;
+	double		delta_y;
+	double		angle;
+	char		direction;
 }	t_player;
 
 typedef struct s_images
@@ -81,9 +85,10 @@ int		keypressed(int key, t_game *game);
 void	start_check_map(t_game *game);
 int		closed(t_game *game);
 void	draw_cube(t_game *game, int y, int x, int color);
-void	draw_player(t_game *game, double x, double y, int i);
+void	draw_player(t_game *game, double delta_x, double delta_y);
 void	draw_vector_x(t_game *game, double x, double y);
 void	draw_vector_y(t_game *game, double x, double y);
+int		move(int key, t_game *game);
 
 //* **************** Parsing ****************
 int		openmap(char **argv, t_game *game);
