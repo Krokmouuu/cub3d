@@ -34,6 +34,7 @@
 # define RED 0x009900FF
 # define GREEN 0x00FF0099
 # define WHITE 0x0099FF00
+# define SQUARE 0x00003399
 
 typedef struct s_texture
 {

@@ -20,6 +20,8 @@ void	put_color(t_game *game, int base_x, int base_y, int color)
 		game->images.addr[base_y * 1024 + base_x] = RED;
 	else if (color == 2 && game->images.addr[base_y * 1024 + base_x] == 0)
 		game->images.addr[base_y * 1024 + base_x] = WHITE;
+	else if (color == 3 && game->images.addr[base_y * 1024 + base_x] == 0)
+		game->images.addr[base_y * 1024 + base_x] = 0x00003399;
 }
 
 void	draw_cube(t_game *game, int y, int x, int color)
@@ -37,7 +39,10 @@ void	draw_cube(t_game *game, int y, int x, int color)
 	{
 		while (base_x <= x * 20 + 10)
 		{
-			put_color(game, base_x, base_y, color);
+			if (base_y + 1 >= y * 20 + 10 || base_x + 1 >= x * 20 + 10)
+				put_color(game, base_x, base_y, 3);
+			else
+				put_color(game, base_x, base_y, color);
 			base_x++;
 		}
 		base_x = x;
@@ -78,6 +83,11 @@ void	start_check_map(t_game *game)
 		}
 		y++;
 	}
+	game->player.angle -= 0.1;
+	if (game->player.angle < 0)
+		game->player.angle += 2 * PI;
+	game->player.delta_x = cos(game->player.angle) * 5;
+	game->player.delta_y = sin(game->player.angle) * 5;
 	draw_player(game, 0, 0);
 	mlx_put_image_to_window(game->mlx, game->win, game->images.img, 0, 0);
 }

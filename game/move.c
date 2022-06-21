@@ -27,7 +27,13 @@ void	clearline(t_game *game, int player_x, int player_y, int endofX, int endofY)
 			break ;
 		if (game->images.addr[player_y * 1024 + player_x] == RED)
 			break ;
-		game->images.addr[player_y * 1024 + player_x] = GREEN;
+		if (game->images.addr[player_y * 1024 + player_x] == 0x00003399)
+		{
+			printf("BONJOUR TA AMNEDR ELK \n");
+			game->images.addr[player_y * 1024 + player_x] = 0x00003399;
+		}
+		else
+			game->images.addr[player_y * 1024 + player_x] = GREEN;
 		e2 = error;
 		if (e2 > -delta_x)
 		{
@@ -98,7 +104,7 @@ void	clear_player(t_game *game, double delta_x, double delta_y)
 	while (temp_y < max_y)
 	{
 		while (temp_x < max_x)
-			game->images.addr[(int)temp_y * 1024 + (int)temp_x++] = GREEN;
+			game->images.addr[(int)(temp_y - 2) * 1024 + (int)(temp_x++ - 2)] = GREEN;
 		temp_x = max_x - 5;
 		temp_y++;
 	}
@@ -116,10 +122,10 @@ void	draw_player(t_game *game, double delta_x, double delta_y)
 	temp_y = game->player.y;
 	max_y = temp_y + 5;
 	max_x = temp_x + 5;
-	while (temp_y < max_y)
+	while (temp_y  < max_y)
 	{
 		while (temp_x < max_x)
-			game->images.addr[(int)temp_y * 1024 + (int)temp_x++] = WHITE;
+			game->images.addr[(int)(temp_y - 2) * 1024 + (int)(temp_x++ - 2)] = WHITE;
 		temp_x = max_x - 5;
 		temp_y++;
 	}
@@ -128,7 +134,7 @@ void	draw_player(t_game *game, double delta_x, double delta_y)
 
 int	move(int key, t_game *game)
 {
-	printf("Player X: %d PLayer Y: %d\n", (int)game->player.x, (int)game->player.y);
+	printf("Player X: %d Player Y: %d\n", (int)game->player.x, (int)game->player.y);
 	if (key == UP)
 	{
 		if (game->images.addr[(int)(game->player.y + game->player.delta_y) * 1024 + (int)(game->player.x + game->player.delta_x)] == RED)
