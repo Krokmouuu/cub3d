@@ -6,7 +6,7 @@
 /*   By: bleroy <bleroy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 18:21:21 by bleroy            #+#    #+#             */
-/*   Updated: 2022/06/21 18:34:20 by bleroy           ###   ########.fr       */
+/*   Updated: 2022/06/21 18:40:25 by bleroy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,11 @@ void	start_check_map(t_game *game)
 		}
 		y++;
 	}
+	game->player.angle -= 0.1;
+	if (game->player.angle < 0)
+		game->player.angle += 2 * PI;
+	game->player.delta_x = cos(game->player.angle) * 5;
+	game->player.delta_y = sin(game->player.angle) * 5;
 	draw_player(game, 0, 0);
 	mlx_put_image_to_window(game->mlx, game->win, game->images.img, 0, 0);
 }

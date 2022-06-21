@@ -6,7 +6,7 @@
 /*   By: bleroy <bleroy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/21 17:17:32 by bleroy            #+#    #+#             */
-/*   Updated: 2022/06/21 18:33:04 by bleroy           ###   ########.fr       */
+/*   Updated: 2022/06/21 18:40:42 by bleroy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,13 @@ void	drawline(t_game *game, int player_x, int player_y, int endofX, int endofY)
 			break ;
 		if (game->images.addr[player_y * 1024 + player_x] == PURPLE)
 			break ;
-		game->images.addr[player_y * 1024 + player_x] = GREEN;
+		if (game->images.addr[player_y * 1024 + player_x] == 0x00003399)
+		{
+			printf("BONJOUR TA AMNEDR ELK \n");
+			game->images.addr[player_y * 1024 + player_x] = 0x00003399;
+		}
+		else
+			game->images.addr[player_y * 1024 + player_x] = GREEN;
 		e2 = error;
 		if (e2 > -delta_x)
 		{
@@ -88,7 +94,7 @@ void	draw_player(t_game *game, double delta_x, double delta_y)
 	temp_y = game->ray.y;
 	max_y = temp_y + 5;
 	max_x = temp_x + 5;
-	while (temp_y < max_y)
+	while (temp_y  < max_y)
 	{
 		while (temp_x < max_x)
 			game->images.addr[(int)temp_y * 1024 + (int)temp_x++] = GREEN;
