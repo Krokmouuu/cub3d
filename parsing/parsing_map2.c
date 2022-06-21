@@ -6,7 +6,7 @@
 /*   By: bleroy <bleroy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 12:38:53 by bleroy            #+#    #+#             */
-/*   Updated: 2022/06/20 15:10:36 by bleroy           ###   ########.fr       */
+/*   Updated: 2022/06/21 18:06:55 by bleroy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,8 +49,8 @@ void	get_player(t_game *game)
 				|| game->map[y][x] == 'S' || game->map[y][x] == 'W')
 			{
 				get_player2(game, y, x, game->map[y][x]);
-				game->player.x = x;
-				game->player.y = y;
+				game->ray.x = x;
+				game->ray.y = y;
 				player++;
 			}
 		}
@@ -69,8 +69,8 @@ void	valid_map(t_game *game)
 	y = 0;
 	while (++y < game->y - 1)
 	{
-		x = 0;
-		while (game->map[y][x] != '\n')
+		x = -1;
+		while (game->map[y][++x] != '\n')
 		{
 			if (game->map[y][x] == '0' &&
 				(game->map[y][x - 1] == ' ' || game->map[y][x - 1] == '\n'))
@@ -85,8 +85,7 @@ void	valid_map(t_game *game)
 			if (game->map[y][x] == '0' &&
 				(game->map[y + 1][x] == ' ' || game->map[y + 1][x] == '\n'
 				|| game->map[y + 1][x] == '\0'))
-					error("Invalid map\n");
-			x++;
+				error("Invalid map\n");
 		}
 	}
 }

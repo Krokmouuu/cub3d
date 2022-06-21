@@ -6,59 +6,11 @@
 /*   By: bleroy <bleroy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 18:21:21 by bleroy            #+#    #+#             */
-/*   Updated: 2022/06/20 13:52:20 by bleroy           ###   ########.fr       */
+/*   Updated: 2022/06/21 18:34:20 by bleroy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
-
-void	put_color(t_game *game, int base_x, int base_y, int color)
-{
-	if (color == 0 && game->images.addr[base_y * 1024 + base_x] == 0)
-		game->images.addr[base_y * 1024 + base_x] = GREEN;
-	else if (color == 1 && game->images.addr[base_y * 1024 + base_x] == 0)
-		game->images.addr[base_y * 1024 + base_x] = RED;
-	else if (color == 2 && game->images.addr[base_y * 1024 + base_x] == 0)
-		game->images.addr[base_y * 1024 + base_x] = WHITE;
-}
-
-void	draw_cube(t_game *game, int y, int x, int color)
-{
-	int	base_y;
-	int	base_x;
-
-	base_x = x;
-	base_y = y * 10;
-	if (x == 0)
-		base_x = 0;
-	if (y == 0)
-		base_y = 1;
-	while (base_y <= y * 20 + 10)
-	{
-		while (base_x <= x * 20 + 10)
-		{
-			put_color(game, base_x, base_y, color);
-			base_x++;
-		}
-		base_x = x;
-		base_y++;
-	}
-}
-
-void	print_map(t_game *game, int y, int x)
-{
-	if (game->map[y][x] == '0')
-		draw_cube(game, y, x, 0);
-	else if (game->map[y][x] == '1')
-		draw_cube(game, y, x, 1);
-	else if (game->map[y][x] == 'N')
-	{
-		game->player.x = x * 20;
-		game->player.y = y * 20;
-	}
-	else
-		return ;
-}
 
 void	start_check_map(t_game *game)
 {

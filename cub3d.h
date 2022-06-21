@@ -6,7 +6,7 @@
 /*   By: bleroy <bleroy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/18 16:44:13 by bleroy            #+#    #+#             */
-/*   Updated: 2022/06/13 17:14:32 by bleroy           ###   ########.fr       */
+/*   Updated: 2022/06/21 18:34:31 by bleroy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,18 @@
 # define RIGHT 2
 # define LEFT_ARROW 123
 # define RIGHT_ARROW 124
-# define RED 0x009900FF
-# define GREEN 0x00FF0099
-# define WHITE 0x0099FF00
+# define PURPLE 0x009900FF
+# define PINK 0x00FF0099
+# define GREEN 0x0099FF00
+
+typedef struct s_raycasting
+{
+	double		x;
+	double		y;
+	double		delta_x;
+	double		delta_y;
+	double		angle;
+}	t_raycasting;
 
 typedef struct s_texture
 {
@@ -47,11 +56,6 @@ typedef struct s_texture
 
 typedef struct s_player
 {
-	double		x;
-	double		y;
-	double		delta_x;
-	double		delta_y;
-	double		angle;
 	char		direction;
 }	t_player;
 
@@ -77,6 +81,7 @@ typedef struct s_game
 	t_texture	text;
 	t_player	player;
 	t_images	images;
+	t_raycasting	ray;
 }	t_game;
 
 //* **************** Game ****************
@@ -89,6 +94,10 @@ void	draw_player(t_game *game, double delta_x, double delta_y);
 void	draw_vector_x(t_game *game, double x, double y);
 void	draw_vector_y(t_game *game, double x, double y);
 int		move(int key, t_game *game);
+void	put_color(t_game *game, int base_x, int base_y, int color);
+void	draw_cube(t_game *game, int y, int x, int color);
+void	print_map(t_game *game, int y, int x);
+void	initray(t_game *game, t_raycasting *ray);
 
 //* **************** Parsing ****************
 int		openmap(char **argv, t_game *game);

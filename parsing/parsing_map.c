@@ -6,29 +6,11 @@
 /*   By: bleroy <bleroy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/07 14:09:41 by bleroy            #+#    #+#             */
-/*   Updated: 2022/06/20 15:00:35 by bleroy           ###   ########.fr       */
+/*   Updated: 2022/06/20 16:44:13 by bleroy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
-
-char	*normalize_gang(t_game *game, int i)
-{
-	char	*str;
-	int		j;
-	int		k;
-
-	k = game->x;
-	j = ft_strlen(game->map[i] - 1);
-	str = malloc(game->x * sizeof(char));
-	str = game->map[i];
-	while (j < game->x - 1)
-	{
-		str[j] = ' ';
-		j++;
-	}
-	return (str);
-}
 
 void	get_x_y(int fd, t_game *game)
 {
