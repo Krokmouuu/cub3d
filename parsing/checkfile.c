@@ -23,6 +23,8 @@ int	getmap(int fd)
 	{
 		i = 0;
 		str = get_next_line(fd);
+		if (!str)
+			error("Invalid map !\n");
 		if (str[i] == '\t' || str[i] == ' ')
 		{
 			while (str[i] == '\t' || str[i] == ' ')

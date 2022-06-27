@@ -20,6 +20,8 @@ void	put_color(t_game *game, int base_x, int base_y, int color)
 		game->images.addr[base_y * 1024 + base_x] = PURPLE;
 	else if (color == 2 && game->images.addr[base_y * 1024 + base_x] == 0)
 		game->images.addr[base_y * 1024 + base_x] = GREEN;
+	else if (color == 3 && game->images.addr[base_y * 1024 + base_x] == 0)
+		game->images.addr[base_y * 1024 + base_x] = SQUARE;
 }
 
 void	draw_cube(t_game *game, int y, int x, int color)
@@ -28,15 +30,17 @@ void	draw_cube(t_game *game, int y, int x, int color)
 	int	base_x;
 
 	base_x = x;
-	base_y = y * 10;
+	base_y = y * SQUARE_SIZE;
 	if (x == 0)
 		base_x = 0;
 	if (y == 0)
 		base_y = 1;
-	while (base_y <= y * 20 + 10)
+	while (base_y <= y * SQUARE_SIZE + SQUARE_SIZE)
 	{
-		while (base_x <= x * 20 + 10)
+		while (base_x <= x * SQUARE_SIZE + SQUARE_SIZE)
 		{
+			if (base_y + 1 >= y * SQUARE_SIZE + SQUARE_SIZE|| base_x + 1 >= x * SQUARE_SIZE + SQUARE_SIZE)
+				put_color(game, base_x, base_y, 3);
 			put_color(game, base_x, base_y, color);
 			base_x++;
 		}

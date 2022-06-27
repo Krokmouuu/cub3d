@@ -30,20 +30,20 @@ void	start_check_map(t_game *game)
 		}
 		y++;
 	}
-	game->player.angle -= 0.1;
-	if (game->player.angle < 0)
-		game->player.angle += 2 * PI;
-	game->player.delta_x = cos(game->player.angle) * 5;
-	game->player.delta_y = sin(game->player.angle) * 5;
+	game->player.direction -= 0.1;
+	if (game->player.direction < 0)
+		game->player.direction += 2 * PI;
+	game->ray.delta_x = cos(game->player.direction) * 5;
+	game->ray.delta_y = sin(game->player.direction) * 5;
 	draw_player(game, 0, 0);
 	mlx_put_image_to_window(game->mlx, game->win, game->images.img, 0, 0);
 }
 
 void	start(t_game *game)
 {
-	game->mlx = mlx_init();
-	game->win = mlx_new_window(game->mlx, 1024, 512, "tuc3D");
-	start_check_map(game);
+	// game->mlx = mlx_init();
+	// game->win = mlx_new_window(game->mlx, 1024, 512, "tuc3D");
+	// start_check_map(game);
 	mlx_hook(game->win, 2, 1L << 0, keypressed, game);
 	mlx_hook(game->win, 17, 1L << 0, closed, game);
 	mlx_loop(game->mlx);

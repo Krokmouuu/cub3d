@@ -23,6 +23,8 @@
 # include <string.h>
 # include <fcntl.h>
 
+
+# define SQUARE_SIZE 20
 # define PI 3.14159265359
 # define UP 13
 # define ESCAPE 53
@@ -34,6 +36,7 @@
 # define PURPLE 0x009900FF
 # define PINK 0x00FF0099
 # define GREEN 0x0099FF00
+# define SQUARE 0x00003399
 
 typedef struct s_raycasting
 {
@@ -42,6 +45,8 @@ typedef struct s_raycasting
 	double		delta_x;
 	double		delta_y;
 	double		angle;
+	double		touch_y;
+	double		touch_x;
 }	t_raycasting;
 
 typedef struct s_texture
@@ -98,7 +103,10 @@ void	put_color(t_game *game, int base_x, int base_y, int color);
 void	draw_cube(t_game *game, int y, int x, int color);
 void	print_map(t_game *game, int y, int x);
 void	initray(t_game *game, t_raycasting *ray);
-
+void	drawline(t_game *game, int player_x, int player_y, int endofX, int endofY);
+void	raycast(t_game *game);
+void	clearline(t_game *game, int player_x, int player_y, int endofX, int endofY);
+void	clearcast(t_game *game);
 //* **************** Parsing ****************
 int		openmap(char **argv, t_game *game);
 int		error(char *str);
