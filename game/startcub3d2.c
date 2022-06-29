@@ -39,7 +39,8 @@ void	draw_cube(t_game *game, int y, int x, int color)
 	{
 		while (base_x <= x * SQUARE_SIZE + SQUARE_SIZE)
 		{
-			if (base_y + 1 >= y * SQUARE_SIZE + SQUARE_SIZE|| base_x + 1 >= x * SQUARE_SIZE + SQUARE_SIZE)
+			if (base_y + 1 >= y * SQUARE_SIZE + SQUARE_SIZE
+				|| base_x + 1 >= x * SQUARE_SIZE + SQUARE_SIZE)
 				put_color(game, base_x, base_y, 3);
 			put_color(game, base_x, base_y, color);
 			base_x++;

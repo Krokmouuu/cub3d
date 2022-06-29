@@ -35,15 +35,13 @@ void	start_check_map(t_game *game)
 		game->player.direction += 2 * PI;
 	game->ray.delta_x = cos(game->player.direction) * 5;
 	game->ray.delta_y = sin(game->player.direction) * 5;
-	draw_player(game, 0, 0);
+	draw_player(game);
 	mlx_put_image_to_window(game->mlx, game->win, game->images.img, 0, 0);
 }
 
 void	start(t_game *game)
 {
-	// game->mlx = mlx_init();
-	// game->win = mlx_new_window(game->mlx, 1024, 512, "tuc3D");
-	// start_check_map(game);
+	start_check_map(game);
 	mlx_hook(game->win, 2, 1L << 0, keypressed, game);
 	mlx_hook(game->win, 17, 1L << 0, closed, game);
 	mlx_loop(game->mlx);

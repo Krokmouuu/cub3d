@@ -39,8 +39,12 @@ int	checkstr(char *str)
 	i = -1;
 	j = 0;
 	while (str[++i])
+	{
+		if (str[i] == ',' && str[i + 1] == ',')
+			error("Invalid RGB HAHAHA\n");
 		if (str[i] == ',')
 			j++;
+	}
 	if (j != 2)
 		return (1);
 	i = -1;

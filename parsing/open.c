@@ -23,6 +23,8 @@ void	init(t_game *game, char **argv)
 	game->text.w = NULL;
 	game->text.floor = NULL;
 	game->text.ceiling = NULL;
+	game->ray.plane_x = 0;
+	game->ray.plane_y = 0.66;
 }
 
 int	openmap(char **argv, t_game *game)

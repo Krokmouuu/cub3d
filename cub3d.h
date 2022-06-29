@@ -23,7 +23,6 @@
 # include <string.h>
 # include <fcntl.h>
 
-
 # define SQUARE_SIZE 20
 # define PI 3.14159265359
 # define UP 13
@@ -37,6 +36,7 @@
 # define PINK 0x00FF0099
 # define GREEN 0x0099FF00
 # define SQUARE 0x00003399
+# define WIDTH 320
 
 typedef struct s_raycasting
 {
@@ -45,9 +45,32 @@ typedef struct s_raycasting
 	double		delta_x;
 	double		delta_y;
 	double		angle;
+	double		plane_x;
+	double		plane_y;
+
 	double		touch_y;
 	double		touch_x;
+	int			map_x;
+	int			map_y;
+	double		camera_x;
+	double		ray_dir_x;
+	double		ray_dir_y;
+	double		side_dist_x;
+	double		side_dist_y;
+	double		delta_dist_x;
+	double		delta_dist_y;
+	double		perp_wall_dist;
+	int			step_x;
+	int			step_y;
+	int			hit;
+	int			side;
+	double		dir_x;
+	double		dir_y;
 }	t_raycasting;
+
+typedef struct s_test
+{
+}	t_test;
 
 typedef struct s_texture
 {
@@ -77,15 +100,15 @@ typedef struct s_images
 
 typedef struct s_game
 {
-	void		*mlx;
-	void		*win;
-	char		*file;
-	char		**map;
-	int			x;
-	int			y;
-	t_texture	text;
-	t_player	player;
-	t_images	images;
+	void			*mlx;
+	void			*win;
+	char			*file;
+	char			**map;
+	int				x;
+	int				y;
+	t_texture		text;
+	t_player		player;
+	t_images		images;
 	t_raycasting	ray;
 }	t_game;
 
@@ -95,7 +118,7 @@ int		keypressed(int key, t_game *game);
 void	start_check_map(t_game *game);
 int		closed(t_game *game);
 void	draw_cube(t_game *game, int y, int x, int color);
-void	draw_player(t_game *game, double delta_x, double delta_y);
+void	draw_player(t_game *game);
 void	draw_vector_x(t_game *game, double x, double y);
 void	draw_vector_y(t_game *game, double x, double y);
 int		move(int key, t_game *game);
@@ -103,10 +126,14 @@ void	put_color(t_game *game, int base_x, int base_y, int color);
 void	draw_cube(t_game *game, int y, int x, int color);
 void	print_map(t_game *game, int y, int x);
 void	initray(t_game *game, t_raycasting *ray);
-void	drawline(t_game *game, int player_x, int player_y, int endofX, int endofY);
+void	drawline(t_game *game, int px, int py, int endofX, int endofY);
 void	raycast(t_game *game);
-void	clearline(t_game *game, int player_x, int player_y, int endofX, int endofY);
+void	clearline(t_game *game, int px, int py, int endofX, int endofY);
 void	clearcast(t_game *game);
+double	define_delta(double rayDir);
+double	define_dist(double rayDir, double ray, double map, double deltaDist);
+double	define_step(double rayDir);
+
 //* **************** Parsing ****************
 int		openmap(char **argv, t_game *game);
 int		error(char *str);

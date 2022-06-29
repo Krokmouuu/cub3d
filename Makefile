@@ -47,6 +47,7 @@ SRCS = gnl/get_next_line.c \
 	   game/startcub3d.c \
 	   game/startcub3d2.c \
 	   game/raycasting.c \
+	   game/raycasting2.c \
 	   game/keys.c \
 	   game/move.c \
 	   Utils/ft_strcmp.c \
@@ -66,7 +67,7 @@ NAME = cub3d
 
 CC = @cc
 
-CFLAGS = -Wall -Werror -Wextra #-g -fsanitize=address
+CFLAGS = -Wall -Werror -Wextra -g -fsanitize=address
 
 RM = @rm -f
 
