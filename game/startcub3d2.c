@@ -14,14 +14,14 @@
 
 void	put_color(t_game *game, int base_x, int base_y, int color)
 {
-	if (color == 0 && game->images.addr[base_y * 1024 + base_x] == 0)
-		game->images.addr[base_y * 1024 + base_x] = PINK;
-	else if (color == 1 && game->images.addr[base_y * 1024 + base_x] == 0)
-		game->images.addr[base_y * 1024 + base_x] = PURPLE;
-	else if (color == 2 && game->images.addr[base_y * 1024 + base_x] == 0)
-		game->images.addr[base_y * 1024 + base_x] = GREEN;
-	else if (color == 3 && game->images.addr[base_y * 1024 + base_x] == 0)
-		game->images.addr[base_y * 1024 + base_x] = SQUARE;
+	if (color == 0 && game->img.addr[base_y * 1024 + base_x] == 0)
+		game->img.addr[base_y * 1024 + base_x] = PINK;
+	else if (color == 1 && game->img.addr[base_y * 1024 + base_x] == 0)
+		game->img.addr[base_y * 1024 + base_x] = PURPLE;
+	else if (color == 2 && game->img.addr[base_y * 1024 + base_x] == 0)
+		game->img.addr[base_y * 1024 + base_x] = GREEN;
+	else if (color == 3 && game->img.addr[base_y * 1024 + base_x] == 0)
+		game->img.addr[base_y * 1024 + base_x] = SQR;
 }
 
 void	draw_cube(t_game *game, int y, int x, int color)
@@ -59,8 +59,8 @@ void	print_map(t_game *game, int y, int x)
 	else if (game->map[y][x] == 'N' || game->map[y][x] == 'E'
 	|| game->map[y][x] == 'S' || game->map[y][x] == 'W')
 	{
-		game->ray.x = x * 20;
-		game->ray.y = y * 20;
+		game->ray.x = x;
+		game->ray.y = y;
 	}
 	else
 		return ;

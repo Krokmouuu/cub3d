@@ -14,29 +14,32 @@
 
 void	start_check_map(t_game *game)
 {
-	int	x;
+	// int	x;
 	int	y;
 
 	y = 0;
-	game->images.img = mlx_new_image(game->mlx, 1024, 512);
-	game->images.addr = (int *)mlx_get_data_addr(game->images.img,
-			&game->images.bits, &game->images.line, &game->images.endian);
-	while (y < game->y)
-	{
-		x = -1;
-		while (game->map[y][++x])
-		{
-			print_map(game, y, x);
-		}
-		y++;
-	}
-	game->player.direction -= 0.1;
-	if (game->player.direction < 0)
-		game->player.direction += 2 * PI;
-	game->ray.delta_x = cos(game->player.direction) * 5;
-	game->ray.delta_y = sin(game->player.direction) * 5;
-	draw_player(game);
-	mlx_put_image_to_window(game->mlx, game->win, game->images.img, 0, 0);
+	game->ray.dir_x = 1;
+	game->ray.dir_y = 1;
+	game->img.img = mlx_new_image(game->mlx, 640, 480);
+	game->img.addr = (int *)mlx_get_data_addr(game->img.img,
+			&game->img.bits, &game->img.line, &game->img.endian);
+	// while (y < game->y)
+	// {
+	// 	x = -1;
+	// 	while (game->map[y][++x])
+	// 	{
+	// 		print_map(game, y, x);
+	// 	}
+	// 	y++;
+	// }
+	// game->player.direction -= 0.1;
+	// if (game->player.direction < 0)
+	// 	game->player.direction += 2 * PI;
+	// game->ray.delta_x = cos(game->player.direction) * 5;
+	// game->ray.delta_y = sin(game->player.direction) * 5;
+	// draw_player(game);
+	raycast(game);
+	mlx_put_image_to_window(game->mlx, game->win, game->img.img, 0, 0);
 }
 
 void	start(t_game *game)

@@ -22,9 +22,12 @@ int	keypressed(int key, t_game *game)
 	else if (key == UP || key == LEFT || key == RIGHT || key == DOWN
 		|| key == LEFT_ARROW || key == RIGHT_ARROW)
 	{
-		mlx_clear_window(game->mlx, game->win);
 		move(key, game);
-		mlx_put_image_to_window(game->mlx, game->win, game->images.img, 0, 0);
+		mlx_put_image_to_window(game->mlx, game->win, game->img.img, 0, 0);
+		mlx_destroy_image(game->mlx, game->img.img);
+		game->img.img = mlx_new_image(game->mlx, 640, 480);
+		game->img.addr = (int *)mlx_get_data_addr(game->img.img,
+			&game->img.bits, &game->img.line, &game->img.endian);
 	}
 	return (0);
 }

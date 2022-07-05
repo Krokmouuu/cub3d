@@ -23,7 +23,10 @@ void	get_player2(t_game *game, int y, int x, char c)
 	if (game->map[y + 1][x] != '0' && game->map[y + 1][x] != '1')
 		error("Invalid map\n");
 	if (c == 'N')
-		game->player.direction = 'N';
+	{
+		//game->player.direction = 'N';
+		game->map[y][x] = '0';
+	}
 	if (c == 'E')
 		game->player.direction = 'E';
 	if (c == 'S')
@@ -49,8 +52,8 @@ void	get_player(t_game *game)
 				|| game->map[y][x] == 'S' || game->map[y][x] == 'W')
 			{
 				get_player2(game, y, x, game->map[y][x]);
-				game->ray.x = x;
-				game->ray.y = y;
+				game->ray.x = (double)x + 0.5;
+				game->ray.y = (double)y + 0.5;
 				player++;
 			}
 		}

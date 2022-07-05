@@ -50,6 +50,7 @@ SRCS = gnl/get_next_line.c \
 	   game/raycasting2.c \
 	   game/keys.c \
 	   game/move.c \
+	   game/move_functions.c \
 	   Utils/ft_strcmp.c \
 	   Utils/ft_atoi.c \
 	   Utils/ft_split.c \

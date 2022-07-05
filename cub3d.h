@@ -35,8 +35,9 @@
 # define PURPLE 0x009900FF
 # define PINK 0x00FF0099
 # define GREEN 0x0099FF00
-# define SQUARE 0x00003399
-# define WIDTH 320
+# define SQR 0x00003399
+# define WIDTH 640
+# define HEIGHT 480
 
 typedef struct s_raycasting
 {
@@ -47,7 +48,6 @@ typedef struct s_raycasting
 	double		angle;
 	double		plane_x;
 	double		plane_y;
-
 	double		touch_y;
 	double		touch_x;
 	int			map_x;
@@ -108,7 +108,7 @@ typedef struct s_game
 	int				y;
 	t_texture		text;
 	t_player		player;
-	t_images		images;
+	t_images		img;
 	t_raycasting	ray;
 }	t_game;
 
@@ -119,6 +119,7 @@ void	start_check_map(t_game *game);
 int		closed(t_game *game);
 void	draw_cube(t_game *game, int y, int x, int color);
 void	draw_player(t_game *game);
+void	clear_player(t_game *game);
 void	draw_vector_x(t_game *game, double x, double y);
 void	draw_vector_y(t_game *game, double x, double y);
 int		move(int key, t_game *game);
@@ -126,13 +127,18 @@ void	put_color(t_game *game, int base_x, int base_y, int color);
 void	draw_cube(t_game *game, int y, int x, int color);
 void	print_map(t_game *game, int y, int x);
 void	initray(t_game *game, t_raycasting *ray);
-void	drawline(t_game *game, int px, int py, int endofX, int endofY);
+void drawline(t_game *game, int x, int draw_start, int draw_end, int color);
 void	raycast(t_game *game);
 void	clearline(t_game *game, int px, int py, int endofX, int endofY);
 void	clearcast(t_game *game);
 double	define_delta(double rayDir);
 double	define_dist(double rayDir, double ray, double map, double deltaDist);
 double	define_step(double rayDir);
+
+void	move_left(t_game *game);
+void	move_right(t_game *game);
+void	move_up(t_game *game);
+void	move_down(t_game *game);
 
 //* **************** Parsing ****************
 int		openmap(char **argv, t_game *game);
