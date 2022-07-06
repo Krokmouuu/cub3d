@@ -22,13 +22,26 @@ void drawline(t_game *game, int x, int draw_start, int draw_end, int color)
 	}
 }
 
+void	draw_floors(t_game *game)
+{
+	int	x;
+
+	x = 0;
+	while (x < WIDTH)
+	{
+		drawline(game, x, 0, HEIGHT / 2, SQR);
+		drawline(game, x, HEIGHT / 2, HEIGHT, PURPLE);
+		x++;
+	}
+}
+
 void	init_struct(t_game *g, int x)
 {
 		g->ray.camera_x = 2 * x / (double)WIDTH - 1;
 		g->ray.ray_dir_x = g->ray.dir_x + g->ray.plane_x * g->ray.camera_x;
 		g->ray.ray_dir_y = g->ray.dir_y + g->ray.plane_y * g->ray.camera_x;
-		g->ray.map_x = (int)floor(g->ray.x);
-		g->ray.map_y = (int)floor(g->ray.y);
+		g->ray.map_x = (int)g->ray.x;
+		g->ray.map_y = (int)g->ray.y;
 		g->ray.hit = 0;
 		g->ray.side = 0;
 
@@ -82,9 +95,29 @@ void	draw_wall(t_game *g, int x, int color)
 		draw_end = HEIGHT - 1;
 	if (x >= 318 && x <= 320)
 		color = SQR;
+	if ((int)g->ray.x < g->ray.map_x)
+		color = PINK;
 	if (g->ray.side == 1)
 		color = color / 2;
 	drawline(g, x, draw_start, draw_end, color);
+}
+
+void	print_minimap(t_game *game)
+{
+	int	x;
+	int	y;
+
+	y = 0;
+
+	while (y < game->y)
+	{
+		x = -1;
+		while (game->map[y][++x])
+		{
+			print_map(game, y, x);
+		}
+		y++;
+	}
 }
 
 void	raycast(t_game *g)
@@ -92,6 +125,8 @@ void	raycast(t_game *g)
 	int		x;
 	int color = GREEN;
 	x = -1;
+
+	draw_floors(g);
 	while (++x < WIDTH)
 	{
 		init_struct(g, x);
@@ -110,12 +145,14 @@ void	raycast(t_game *g)
 				g->ray.map_y += g->ray.step_y;
 				g->ray.side = 1;
 			}
+			//printf("x == %d  | y == %d\n", g->ray.map_x, g->ray.map_y );
+      		//if (g->ray.side == 1) 
+			//	  color = GREEN;
 			if (g->map[g->ray.map_y][g->ray.map_x] == '1')
 				g->ray.hit = 1;
-      		if (g->ray.side == 1) 
-				  color = GREEN;
 			//drawline(g, g->ray.x, g->ray.y, g->ray.map_x, g->ray.map_y);
 		}
 		draw_wall(g, x, color);
 	}
+	//print_minimap(g);
 }

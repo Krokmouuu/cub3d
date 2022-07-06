@@ -14,18 +14,18 @@
 
 void	move_up(t_game *game)
 {
-	if (game->map[(int)(game->ray.x + game->ray.dir_x)][(int)game->ray.y] != '1')	
+	if (game->map[(int)game->ray.y][(int)(game->ray.x + game->ray.dir_x * 0.1)] != '1')
 		game->ray.x += game->ray.dir_x * 0.1;
-	if (game->map[(int)game->ray.x][(int)(game->ray.y + game->ray.dir_y)] != '1')	
+	if (game->map[(int)(game->ray.y + game->ray.dir_y * 0.1)][(int)game->ray.x] != '1')	
 		game->ray.y += game->ray.dir_y * 0.1;
 	raycast(game);
 }
 
 void	move_down(t_game *game)
 {
-	if (game->map[(int)(game->ray.x - game->ray.dir_x)][(int)game->ray.y] != '1')	
+	if (game->map[(int)game->ray.y][(int)(game->ray.x - game->ray.dir_x)] != '1')	
 		game->ray.x -= game->ray.dir_x * 0.1;
-	if (game->map[(int)game->ray.x][(int)(game->ray.y - game->ray.dir_y)] != '1')	
+	if (game->map[(int)(game->ray.y - game->ray.dir_y)][(int)game->ray.x] != '1')	
 		game->ray.y -= game->ray.dir_y * 0.1;
 	raycast(game);
 }
@@ -63,7 +63,7 @@ void	move_down(t_game *game)
 void	move_left(t_game *game)
 {
 	double	old_dir_x;
-	double	rotspeed = 0.1;
+	double	rotspeed = 0.2;
 	double	old_plane_x;
 
 	old_dir_x = game->ray.dir_x;
@@ -78,7 +78,7 @@ void	move_left(t_game *game)
 void	move_right(t_game *game)
 {
 	double	old_dir_x;
-	double	rotspeed = 0.1;
+	double	rotspeed = 0.2;
 	double	old_plane_x;
 
 	old_dir_x = game->ray.dir_x;

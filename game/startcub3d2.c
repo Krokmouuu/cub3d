@@ -14,14 +14,14 @@
 
 void	put_color(t_game *game, int base_x, int base_y, int color)
 {
-	if (color == 0 && game->img.addr[base_y * 1024 + base_x] == 0)
-		game->img.addr[base_y * 1024 + base_x] = PINK;
-	else if (color == 1 && game->img.addr[base_y * 1024 + base_x] == 0)
-		game->img.addr[base_y * 1024 + base_x] = PURPLE;
+	if (color == 0 && game->img.addr[base_y * game->img.line / 4 + base_x] == 0)
+		game->img.addr[base_y * game->img.line / 4 + base_x] = PINK;
+	else if (color == 1 && game->img.addr[base_y * game->img.line / 4 + base_x] == 0)
+		game->img.addr[base_y * game->img.line / 4 + base_x] = PURPLE;
 	else if (color == 2 && game->img.addr[base_y * 1024 + base_x] == 0)
-		game->img.addr[base_y * 1024 + base_x] = GREEN;
+		game->img.addr[base_y * game->img.line / 4 + base_x] = GREEN;
 	else if (color == 3 && game->img.addr[base_y * 1024 + base_x] == 0)
-		game->img.addr[base_y * 1024 + base_x] = SQR;
+		game->img.addr[base_y * game->img.line / 4 + base_x] = SQR;
 }
 
 void	draw_cube(t_game *game, int y, int x, int color)

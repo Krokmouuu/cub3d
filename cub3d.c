@@ -49,7 +49,7 @@ int	main(int argc, char **argv)
 	openmap(argv, &game);
 	parsing_map(&game);
 	game.mlx = mlx_init();
-	game.win = mlx_new_window(game.mlx, 1600, 900, "tuc3D");
+	game.win = mlx_new_window(game.mlx, WIDTH, HEIGHT, "tuc3D");
 	start_check_map(&game);
 	start(&game);
 	return (0);
