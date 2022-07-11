@@ -12,16 +12,16 @@
 
 #include "../cub3d.h"
 
-void	put_color(t_game *game, int base_x, int base_y, int color)
+void	put_color(t_game *g, int base_x, int base_y, int color)
 {
-	if (color == 0 && game->img.addr[base_y * game->img.line / 4 + base_x] == 0)
-		game->img.addr[base_y * game->img.line / 4 + base_x] = PINK;
-	else if (color == 1 && game->img.addr[base_y * game->img.line / 4 + base_x] == 0)
-		game->img.addr[base_y * game->img.line / 4 + base_x] = PURPLE;
-	else if (color == 2 && game->img.addr[base_y * 1024 + base_x] == 0)
-		game->img.addr[base_y * game->img.line / 4 + base_x] = GREEN;
-	else if (color == 3 && game->img.addr[base_y * 1024 + base_x] == 0)
-		game->img.addr[base_y * game->img.line / 4 + base_x] = SQR;
+	if (color == 0 && g->img.addr[base_y * g->img.line / 4 + base_x] == 0)
+		g->img.addr[base_y * g->img.line / 4 + base_x] = PINK;
+	else if (color == 1 && g->img.addr[base_y * g->img.line / 4 + base_x] == 0)
+		g->img.addr[base_y * g->img.line / 4 + base_x] = PURPLE;
+	else if (color == 2 && g->img.addr[base_y * 1024 + base_x] == 0)
+		g->img.addr[base_y * g->img.line / 4 + base_x] = GREEN;
+	else if (color == 3 && g->img.addr[base_y * 1024 + base_x] == 0)
+		g->img.addr[base_y * g->img.line / 4 + base_x] = SQR;
 }
 
 void	draw_cube(t_game *game, int y, int x, int color)
@@ -64,4 +64,21 @@ void	print_map(t_game *game, int y, int x)
 	}
 	else
 		return ;
+}
+
+void	print_minimap(t_game *game)
+{
+	int	x;
+	int	y;
+
+	y = 0;
+	while (y < game->y)
+	{
+		x = -1;
+		while (game->map[y][++x])
+		{
+			print_map(game, y, x);
+		}
+		y++;
+	}
 }

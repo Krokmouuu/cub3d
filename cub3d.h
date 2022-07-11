@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bleroy <bleroy@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ple-berr <ple-berr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/18 16:44:13 by bleroy            #+#    #+#             */
-/*   Updated: 2022/06/21 18:40:38 by bleroy           ###   ########.fr       */
+/*   Updated: 2022/07/11 10:18:55 by ple-berr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,11 +25,11 @@
 
 # define SQUARE_SIZE 20
 # define PI 3.14159265359
-# define UP 13
-# define ESCAPE 53
 # define LEFT 0
 # define DOWN 1
 # define RIGHT 2
+# define UP 13
+# define ESCAPE 53
 # define LEFT_ARROW 123
 # define RIGHT_ARROW 124
 # define PURPLE 0x009900FF
@@ -66,11 +66,10 @@ typedef struct s_raycasting
 	int			side;
 	double		dir_x;
 	double		dir_y;
+	int			color;
+	int			ceiling;
+	int			floor;
 }	t_raycasting;
-
-typedef struct s_test
-{
-}	t_test;
 
 typedef struct s_texture
 {
@@ -114,36 +113,39 @@ typedef struct s_game
 
 //* **************** Game ****************
 void	start(t_game *game);
-int		keypressed(int key, t_game *game);
-void	start_check_map(t_game *game);
 int		closed(t_game *game);
 void	draw_cube(t_game *game, int y, int x, int color);
+void	put_color(t_game *game, int base_x, int base_y, int color);
 void	draw_player(t_game *game);
-void	clear_player(t_game *game);
 void	draw_vector_x(t_game *game, double x, double y);
 void	draw_vector_y(t_game *game, double x, double y);
+void	start_check_map(t_game *game);
+int		keypressed(int key, t_game *game);
 int		move(int key, t_game *game);
-void	put_color(t_game *game, int base_x, int base_y, int color);
+void	clear_player(t_game *game);
 void	draw_cube(t_game *game, int y, int x, int color);
 void	print_map(t_game *game, int y, int x);
-void	initray(t_game *game, t_raycasting *ray);
-void drawline(t_game *game, int x, int draw_start, int draw_end, int color);
-void	raycast(t_game *game);
-void	clearline(t_game *game, int px, int py, int endofX, int endofY);
 void	clearcast(t_game *game);
+void	drawline(t_game	*game, int x, int draw_start, int draw_end);
+void	initray(t_game *game, t_raycasting *ray);
+void	raycast(t_game *game);
 double	define_delta(double rayDir);
 double	define_dist(double rayDir, double ray, double map, double deltaDist);
 double	define_step(double rayDir);
+int		init_struct(t_game *g, int x);
 
 void	move_left(t_game *game);
 void	move_right(t_game *game);
 void	move_up(t_game *game);
 void	move_down(t_game *game);
+void	rotate_left(t_game *g);
+void	rotate_right(t_game *g);
 
 //* **************** Parsing ****************
 int		openmap(char **argv, t_game *game);
 int		error(char *str);
 void	get_texture(int len, t_game *game);
+int		rgb_to_hex(t_game *game);
 char	*get_texture_2(char *str);
 void	get_texture3(char *str, t_game *game);
 int		*get_color(char *str);

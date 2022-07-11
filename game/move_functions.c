@@ -3,31 +3,81 @@
 /*                                                        :::      ::::::::   */
 /*   move_functions.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ple-berr <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: ple-berr <ple-berr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/29 17:05:51 by ple-berr          #+#    #+#             */
-/*   Updated: 2022/06/29 17:05:52 by ple-berr         ###   ########.fr       */
+/*   Updated: 2022/07/11 16:55:35 by ple-berr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-void	move_up(t_game *game)
+void	move_up(t_game *g)
 {
-	if (game->map[(int)game->ray.y][(int)(game->ray.x + game->ray.dir_x * 0.1)] != '1')
-		game->ray.x += game->ray.dir_x * 0.1;
-	if (game->map[(int)(game->ray.y + game->ray.dir_y * 0.1)][(int)game->ray.x] != '1')	
-		game->ray.y += game->ray.dir_y * 0.1;
-	raycast(game);
+	if (g->map[(int)g->ray.y][(int)(g->ray.x + g->ray.dir_x * 0.1)] != '1')
+		g->ray.x += g->ray.dir_x * 0.1;
+	if (g->map[(int)(g->ray.y + g->ray.dir_y * 0.1)][(int)g->ray.x] != '1')
+		g->ray.y += g->ray.dir_y * 0.1;
+	raycast(g);
 }
 
-void	move_down(t_game *game)
+void	move_down(t_game *g)
 {
-	if (game->map[(int)game->ray.y][(int)(game->ray.x - game->ray.dir_x)] != '1')	
-		game->ray.x -= game->ray.dir_x * 0.1;
-	if (game->map[(int)(game->ray.y - game->ray.dir_y)][(int)game->ray.x] != '1')	
-		game->ray.y -= game->ray.dir_y * 0.1;
-	raycast(game);
+	if (g->map[(int)g->ray.y][(int)(g->ray.x - g->ray.dir_x)] != '1')
+		g->ray.x -= g->ray.dir_x * 0.1;
+	if (g->map[(int)(g->ray.y - g->ray.dir_y)][(int)g->ray.x] != '1')
+		g->ray.y -= g->ray.dir_y * 0.1;
+	raycast(g);
+}
+
+void	move_left(t_game *g)
+{	
+	if (g->map[(int)g->ray.y][(int)(g->ray.x + g->ray.dir_y * 0.11)] != '1')
+		g->ray.x += g->ray.dir_y * 0.1;
+	if (g->map[(int)(g->ray.y - g->ray.dir_x * 0.11)][(int)g->ray.x] != '1')
+		g->ray.y -= g->ray.dir_x * 0.1;
+	raycast(g);
+}
+
+void	move_right(t_game *g)
+{
+	if (g->map[(int)g->ray.y][(int)(g->ray.x - g->ray.dir_y * 0.11)] != '1')
+		g->ray.x -= g->ray.dir_y * 0.1;
+	if (g->map[(int)(g->ray.y + g->ray.dir_x * 0.11)][(int)g->ray.x] != '1')
+		g->ray.y += g->ray.dir_x * 0.1;
+	raycast(g);
+}
+
+void	rotate_left(t_game *g)
+{
+	double	old_dir_x;
+	double	r;
+	double	old_plane_x;
+
+	r = 0.1;
+	old_dir_x = g->ray.dir_x;
+	g->ray.dir_x = g->ray.dir_x * cos(-r) - g->ray.dir_y * sin(-r);
+	g->ray.dir_y = old_dir_x * sin(-r) + g->ray.dir_y * cos(-r);
+	old_plane_x = g->ray.plane_x;
+	g->ray.plane_x = g->ray.plane_x * cos(-r) - g->ray.plane_y * sin(-r);
+	g->ray.plane_y = old_plane_x * sin(-r) + g->ray.plane_y * cos(-r);
+	raycast(g);
+}
+
+void	rotate_right(t_game *g)
+{
+	double	old_dir_x;
+	double	r;
+	double	old_plane_x;
+
+	r = 0.1;
+	old_dir_x = g->ray.dir_x;
+	g->ray.dir_x = (g->ray.dir_x * cos(r)) - g->ray.dir_y * sin(r);
+	g->ray.dir_y = old_dir_x * sin(r) + g->ray.dir_y * cos(r);
+	old_plane_x = g->ray.plane_x;
+	g->ray.plane_x = (g->ray.plane_x * cos(r)) - g->ray.plane_y * sin(r);
+	g->ray.plane_y = old_plane_x * sin(r) + g->ray.plane_y * cos(r);
+	raycast(g);
 }
 
 // void	move_up(t_game *game)
@@ -59,41 +109,9 @@ void	move_down(t_game *game)
 // 	raycast(game);
 // 	//draw_player(game);
 // }
-
-void	move_left(t_game *game)
-{
-	double	old_dir_x;
-	double	rotspeed = 0.2;
-	double	old_plane_x;
-
-	old_dir_x = game->ray.dir_x;
-	game->ray.dir_x = game->ray.dir_x * cos(-rotspeed) - game->ray.dir_y * sin(-rotspeed);
-	game->ray.dir_y = old_dir_x * sin(-rotspeed) + game->ray.dir_y * cos(-rotspeed);
-	old_plane_x = game->ray.plane_x;
-	game->ray.plane_x = game->ray.plane_x * cos(-rotspeed) - game->ray.plane_y * sin(-rotspeed);
-	game->ray.plane_y = old_plane_x * sin(-rotspeed) + game->ray.plane_y * cos(-rotspeed);
-	raycast(game);
-}
-
-void	move_right(t_game *game)
-{
-	double	old_dir_x;
-	double	rotspeed = 0.2;
-	double	old_plane_x;
-
-	old_dir_x = game->ray.dir_x;
-	game->ray.dir_x = (game->ray.dir_x * cos(rotspeed)) - game->ray.dir_y * sin(rotspeed);
-	game->ray.dir_y = old_dir_x * sin(rotspeed) + game->ray.dir_y * cos(rotspeed);
-	old_plane_x = game->ray.plane_x;
-	game->ray.plane_x = (game->ray.plane_x * cos(rotspeed)) - game->ray.plane_y * sin(rotspeed);
-	game->ray.plane_y = old_plane_x * sin(rotspeed) + game->ray.plane_y * cos(rotspeed);
-	raycast(game);
-}
-
 // void	move_left(t_game *game)
 // {
 // 	double	number;
-
 // 	number = (game->ray.angle -= M_PI / 20);
 // 	//clear_player(game);
 // 	if (number < 0)
@@ -101,14 +119,12 @@ void	move_right(t_game *game)
 // 	game->ray.delta_x = cos(game->ray.angle) * 5;
 // 	game->ray.delta_y = sin(game->ray.angle) * 5;
 // 	raycast(game);
-
 // 	//draw_player(game);
 // }
 
 // void	move_right(t_game *game)
 // {
 // 	double	number;
-
 // 	number = (game->ray.angle += M_PI / 20);
 // 	//clear_player(game);
 // 	if (number > 2 * M_PI)
@@ -116,6 +132,5 @@ void	move_right(t_game *game)
 // 	game->ray.delta_x = cos(game->ray.angle) * 5;
 // 	game->ray.delta_y = sin(game->ray.angle) * 5;
 // 	raycast(game);
-
 // 	//draw_player(game);
 // }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   move.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bleroy <bleroy@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ple-berr <ple-berr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/21 17:17:32 by bleroy            #+#    #+#             */
-/*   Updated: 2022/06/21 18:40:42 by bleroy           ###   ########.fr       */
+/*   Updated: 2022/07/11 15:28:12 by ple-berr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,10 @@ int	move(int key, t_game *game)
 		move_left(game);
 	if (key == RIGHT)
 		move_right(game);
+	if (key == LEFT_ARROW)
+		rotate_left(game);
+	if (key == RIGHT_ARROW)
+		rotate_right(game);
 	return (0);
 }
 
@@ -127,7 +131,6 @@ int	move(int key, t_game *game)
 // 	dst = game->img.addr + (y * game->img.line + x * (game->img.bits / 8));
 // 	*(unsigned int*)dst = color;
 // }
-
 
 // void	drawline(t_game *game, int px, int py, int endofX, int endofY)
 // {

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   open.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bleroy <bleroy@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ple-berr <ple-berr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/18 19:38:35 by bleroy            #+#    #+#             */
-/*   Updated: 2022/06/10 18:37:13 by bleroy           ###   ########.fr       */
+/*   Updated: 2022/07/11 15:27:12 by ple-berr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ void	init(t_game *game, char **argv)
 	game->file = argv[1];
 	game->x = 0;
 	game->y = 0;
+	game->ray.dir_x = 1;
+	game->ray.dir_y = 0;
 	game->text.n = NULL;
 	game->text.e = NULL;
 	game->text.s = NULL;

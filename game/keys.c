@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   key.c                                              :+:      :+:    :+:   */
+/*   keys.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bleroy <bleroy@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ple-berr <ple-berr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/10 11:39:38 by bleroy            #+#    #+#             */
-/*   Updated: 2022/06/10 11:39:54 by bleroy           ###   ########.fr       */
+/*   Updated: 2022/07/08 11:07:42 by ple-berr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int	keypressed(int key, t_game *game)
 		mlx_destroy_image(game->mlx, game->img.img);
 		game->img.img = mlx_new_image(game->mlx, 640, 480);
 		game->img.addr = (int *)mlx_get_data_addr(game->img.img,
-			&game->img.bits, &game->img.line, &game->img.endian);
+				&game->img.bits, &game->img.line, &game->img.endian);
 	}
 	return (0);
 }
