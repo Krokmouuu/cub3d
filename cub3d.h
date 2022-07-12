@@ -6,7 +6,7 @@
 /*   By: ple-berr <ple-berr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/18 16:44:13 by bleroy            #+#    #+#             */
-/*   Updated: 2022/07/11 10:18:55 by ple-berr         ###   ########.fr       */
+/*   Updated: 2022/07/12 10:59:46 by ple-berr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -140,6 +140,7 @@ void	move_up(t_game *game);
 void	move_down(t_game *game);
 void	rotate_left(t_game *g);
 void	rotate_right(t_game *g);
+void	rotate_direction(t_game *g);
 
 //* **************** Parsing ****************
 int		openmap(char **argv, t_game *game);

@@ -6,7 +6,7 @@
 /*   By: ple-berr <ple-berr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 12:38:53 by bleroy            #+#    #+#             */
-/*   Updated: 2022/07/11 17:03:43 by ple-berr         ###   ########.fr       */
+/*   Updated: 2022/07/12 10:59:25 by ple-berr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,17 +23,14 @@ void	get_player2(t_game *game, int y, int x, char c)
 	if (game->map[y + 1][x] != '0' && game->map[y + 1][x] != '1')
 		error("Invalid map\n");
 	if (c == 'N')
-	{
-		game->ray.dir_x = 1.0;
-		game->ray.dir_y = 0.0;
 		game->player.direction = 'N';
-	}
 	if (c == 'E')
 		game->player.direction = 'E';
 	if (c == 'S')
 		game->player.direction = 'S';
 	if (c == 'W')
 		game->player.direction = 'W';
+	rotate_direction(game);
 }
 
 void	get_player(t_game *game)

@@ -6,7 +6,7 @@
 /*   By: ple-berr <ple-berr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 16:03:15 by ple-berr          #+#    #+#             */
-/*   Updated: 2022/07/11 15:30:43 by ple-berr         ###   ########.fr       */
+/*   Updated: 2022/07/12 10:58:36 by ple-berr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,9 +81,6 @@ void	raycast(t_game *g)
 
 	x = -1;
 	draw_floors(g);
-	printf("1. %f & %f\n", g->ray.dir_x,g->ray.dir_y);
-	printf("2. %f & %f\n", g->ray.ray_dir_x,g->ray.ray_dir_y);
-	printf("3. %f & %f\n\n", g->ray.delta_dist_x,g->ray.delta_dist_y);
 	while (++x < WIDTH && init_struct(g, x))
 	{
 		while (g->ray.hit == 0)
