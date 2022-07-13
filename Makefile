@@ -6,7 +6,7 @@
 #    By: ple-berr <ple-berr@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/18 18:32:58 by bleroy            #+#    #+#              #
-#    Updated: 2022/07/08 14:17:05 by ple-berr         ###   ########.fr        #
+#    Updated: 2022/07/12 14:24:34 by ple-berr         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -51,6 +51,7 @@ SRCS = gnl/get_next_line.c \
 	   game/keys.c \
 	   game/move.c \
 	   game/move_functions.c \
+	   game/move_function_two.c \
 	   Utils/ft_strcmp.c \
 	   Utils/ft_atoi.c \
 	   Utils/ft_split.c \
