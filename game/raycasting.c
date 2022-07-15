@@ -6,12 +6,11 @@
 /*   By: ple-berr <ple-berr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 16:03:15 by ple-berr          #+#    #+#             */
-/*   Updated: 2022/07/13 10:45:37 by ple-berr         ###   ########.fr       */
+/*   Updated: 2022/07/13 12:54:27 by ple-berr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
-
 
 void	drawline(t_game *game, int x, int draw_start, int draw_end)
 {
@@ -57,16 +56,16 @@ void	draw_wall(t_game *g, int x)
 		draw_end = HEIGHT - 1;
 	if (g->ray.side == 0)
 	{
-		if (g->ray.step_x <= 0)	
+		if (g->ray.step_x <= 0)
 			g->ray.color = 0x0099CCFF;
 		if (g->ray.step_x > 0)
 			g->ray.color = 0x0099FF66;
 	}
 	if (g->ray.side == 1)
 	{
-		if (g->ray.step_y <= 0)	
+		if (g->ray.step_y <= 0)
 			g->ray.color = 0x00FFFF66;
-		if (g->ray.step_y > 0)	
+		if (g->ray.step_y > 0)
 			g->ray.color = 0x009966FF;
 	}
 	drawline(g, x, draw_start, draw_end);

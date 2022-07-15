@@ -6,7 +6,7 @@
 /*   By: ple-berr <ple-berr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/29 17:05:51 by ple-berr          #+#    #+#             */
-/*   Updated: 2022/07/12 14:24:32 by ple-berr         ###   ########.fr       */
+/*   Updated: 2022/07/13 12:07:35 by ple-berr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,9 @@ void	move_up(t_game *g)
 
 void	move_down(t_game *g)
 {
-	if (g->map[(int)g->ray.y][(int)(g->ray.x - g->ray.dir_x)] != '1')
+	if (g->map[(int)g->ray.y][(int)(g->ray.x - g->ray.dir_x * 0.2)] != '1')
 		g->ray.x -= g->ray.dir_x * 0.2;
-	if (g->map[(int)(g->ray.y - g->ray.dir_y)][(int)g->ray.x] != '1')
+	if (g->map[(int)(g->ray.y - g->ray.dir_y * 0.2)][(int)g->ray.x] != '1')
 		g->ray.y -= g->ray.dir_y * 0.2;
 	raycast(g);
 }
@@ -34,7 +34,7 @@ void	move_left(t_game *g)
 {	
 	if (g->map[(int)g->ray.y][(int)(g->ray.x + g->ray.dir_y * 0.21)] != '1')
 		g->ray.x += g->ray.dir_y * 0.2;
-	if (g->map[(int)(g->ray.y - g->ray.dir_x * 0.11)][(int)g->ray.x] != '1')
+	if (g->map[(int)(g->ray.y - g->ray.dir_x * 0.21)][(int)g->ray.x] != '1')
 		g->ray.y -= g->ray.dir_x * 0.2;
 	raycast(g);
 }
