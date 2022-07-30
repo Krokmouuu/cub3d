@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_textures2.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bleroy <bleroy@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ple-berr <ple-berr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/02 16:41:09 by bleroy            #+#    #+#             */
-/*   Updated: 2022/06/07 12:31:52 by bleroy           ###   ########.fr       */
+/*   Updated: 2022/07/30 11:30:37 by ple-berr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,5 +52,45 @@ int	checkstr(char *str)
 	while (str[++i])
 		if (str[i] == ',' && (str[i + 1] == '\n' || str[i + 1] == ' '))
 			return (1);
+	return (0);
+}
+
+int	load_texture(t_game *g)
+{
+	int	h;
+	int	w;
+
+	h = 0;
+	w = 0;
+	g->text.n.img = mlx_xpm_file_to_image(g->mlx,
+			"./texture/wall_1.xpm", &h, &w);
+	g->text.n.addr = mlx_get_data_addr(g->text.n.img,
+			&g->text.n.bits,
+			&g->text.n.line, &g->text.n.endian);
+	g->text.s.img = mlx_xpm_file_to_image(g->mlx,
+			"./texture/wall_2.xpm", &h, &w);
+	g->text.s.addr = mlx_get_data_addr(g->text.s.img,
+			&g->text.s.bits,
+			&g->text.s.line, &g->text.s.endian);
+	return (0);
+}
+
+int	load_texture_2(t_game *g)
+{
+	int	h;
+	int	w;
+
+	h = 0;
+	w = 0;
+	g->text.w.img = mlx_xpm_file_to_image(g->mlx,
+			"./texture/wall_3.xpm", &h, &w);
+	g->text.w.addr = mlx_get_data_addr(g->text.w.img,
+			&g->text.w.bits,
+			&g->text.w.line, &g->text.w.endian);
+	g->text.e.img = mlx_xpm_file_to_image(g->mlx,
+			"./texture/wall_4.xpm", &h, &w);
+	g->text.e.addr = mlx_get_data_addr(g->text.e.img,
+			&g->text.e.bits,
+			&g->text.e.line, &g->text.e.endian);
 	return (0);
 }

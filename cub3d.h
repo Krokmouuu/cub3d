@@ -6,7 +6,7 @@
 /*   By: ple-berr <ple-berr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/18 16:44:13 by bleroy            #+#    #+#             */
-/*   Updated: 2022/07/13 10:36:46 by ple-berr         ###   ########.fr       */
+/*   Updated: 2022/07/30 11:28:47 by ple-berr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@
 # define SQR 0x00003399
 # define WIDTH 640
 # define HEIGHT 480
+# define TEX_H 64
 
 typedef struct s_raycasting
 {
@@ -69,33 +70,42 @@ typedef struct s_raycasting
 	int			color;
 	int			ceiling;
 	int			floor;
+
+	int			line_height;
+	double		wall_x;
+	int			tex_x;
+	int			tex_y;
 }	t_raycasting;
-
-typedef struct s_texture
-{
-	void	*n;
-	void	*w;
-	void	*s;
-	void	*e;
-	int		*floor;
-	int		*ceiling;
-}	t_texture;
-
-typedef struct s_player
-{
-	char		direction;
-}	t_player;
 
 typedef struct s_images
 {
 	void	*img;
-	int		*addr;
+	char	*addr;
 	int		bits;
 	int		line;
 	int		endian;
 	int		pos_x;
 	int		pos_y;
 }	t_images;
+
+typedef struct s_texture
+{
+	t_images	n;
+	t_images	w;
+	t_images	s;
+	t_images	e;
+	char		*north;
+	char		*south;
+	char		*east;
+	char		*west;
+	int			*floor;
+	int			*ceiling;
+}	t_texture;
+
+typedef struct s_player
+{
+	char		direction;
+}	t_player;
 
 typedef struct s_game
 {
@@ -111,68 +121,78 @@ typedef struct s_game
 	t_raycasting	ray;
 }	t_game;
 
+//* **************** Texture ****************
+int				load_texture(t_game *game);
+int				load_texture_2(t_game *g);
+void			put_pixel(t_images *img, int x, int y, unsigned int color);
+unsigned int	get_data_color(int x, int y, void *addr, t_images *img);
+void			draw_texture(t_game *g);
+unsigned int	choose_texture(t_game *g, int side);
+double			height(t_game *g);
+void			clear_screen(t_game *g);
 //* **************** Game ****************
-void	start(t_game *game);
-int		closed(t_game *game);
-void	draw_cube(t_game *game, int y, int x, int color);
-void	put_color(t_game *game, int base_x, int base_y, int color);
-void	draw_player(t_game *game);
-void	draw_vector_x(t_game *game, double x, double y);
-void	draw_vector_y(t_game *game, double x, double y);
-void	start_check_map(t_game *game);
-int		keypressed(int key, t_game *game);
-int		move(int key, t_game *game);
-void	clear_player(t_game *game);
-void	draw_cube(t_game *game, int y, int x, int color);
-void	print_map(t_game *game, int y, int x);
-void	clearcast(t_game *game);
-void	drawline(t_game	*game, int x, int draw_start, int draw_end);
-void	initray(t_game *game, t_raycasting *ray);
-void	raycast(t_game *game);
-double	define_delta(double rayDir);
-double	define_dist(double rayDir, double ray, double map, double deltaDist);
-double	define_step(double rayDir);
-int		init_struct(t_game *g, int x);
+void			start(t_game *game);
+int				closed(t_game *game);
+void			draw_cube(t_game *game, int y, int x, int color);
+void			put_color(t_game *game, int base_x, int base_y, int color);
+void			draw_player(t_game *game);
+void			draw_vector_x(t_game *game, double x, double y);
+void			draw_vector_y(t_game *game, double x, double y);
+void			start_check_map(t_game *game);
+int				keypressed(int key, t_game *game);
+int				move(int key, t_game *game);
+void			clear_player(t_game *game);
+void			draw_cube(t_game *game, int y, int x, int color);
+void			print_map(t_game *game, int y, int x);
+void			clearcast(t_game *game);
+void			drawline(t_game	*game, int x, int draw_start, int draw_end);
+void			initray(t_game *game, t_raycasting *ray);
+void			raycast(t_game *game);
+double			define_delta(double r_dir);
+double			define_dist(double r_dir, double r, double map, double d_dist);
+double			define_step(double r_dir);
+int				init_struct(t_game *g, int x);
 
-void	move_left(t_game *game);
-void	move_right(t_game *game);
-void	move_up(t_game *game);
-void	move_down(t_game *game);
-void	rotate_left(t_game *g);
-void	rotate_right(t_game *g);
-void	rotate_direction(t_game *g);
+void			draw_floors(t_game *game);
+void			move_left(t_game *game);
+void			move_right(t_game *game);
+void			move_up(t_game *game);
+void			move_down(t_game *game);
+void			rotate_left(t_game *g);
+void			rotate_right(t_game *g);
+void			rotate_direction(t_game *g);
 
 //* **************** Parsing ****************
-int		openmap(char **argv, t_game *game);
-int		error(char *str);
-void	get_texture(int len, t_game *game);
-int		rgb_to_hex(t_game *game);
-char	*get_texture_2(char *str);
-void	get_texture3(char *str, t_game *game);
-int		*get_color(char *str);
-int		checkvalid(int len, t_game *game);
-int		checkfile(t_game *game);
-int		checkmap(int len, t_game *game);
-int		checkstr(char *str);
-int		checktab(char c);
-void	getouttab(char **tab);
-void	scale(t_game *game);
-int		getmap(int fd);
-void	parsing_map(t_game *game);
-void	check_first_and_last(t_game *game);
-void	valid_map(t_game *game);
-void	get_player(t_game *game);
-void	check_wall(t_game *game);
+int				openmap(char **argv, t_game *game);
+int				error(char *str);
+void			get_texture(int len, t_game *game);
+int				rgb_to_hex(t_game *game);
+char			*get_texture_2(char *str);
+void			get_texture3(char *str, t_game *game);
+int				*get_color(char *str);
+int				checkvalid(int len, t_game *game);
+int				checkfile(t_game *game);
+int				checkmap(int len, t_game *game);
+int				checkstr(char *str);
+int				checktab(char c);
+void			getouttab(char **tab);
+void			scale(t_game *game);
+int				getmap(int fd);
+void			parsing_map(t_game *game);
+void			check_first_and_last(t_game *game);
+void			valid_map(t_game *game);
+void			get_player(t_game *game);
+void			check_wall(t_game *game);
 
 //* **************** Utils ****************
-int		ft_strcmp(char *s1, char *s2);
-int		ft_strncmp(const char *s1, const char *s2, size_t n);
-char	*ft_strdup(const char *s1);
-char	**ft_split(char const *s, char c);
-int		ft_atoi(const char *str);
-int		alpha(int c);
-int		ft_isdigit(int c);
-void	*ft_calloc(size_t count, size_t size);
-char	*ft_substr(char const *s, unsigned int start, size_t len);
+int				ft_strcmp(char *s1, char *s2);
+int				ft_strncmp(const char *s1, const char *s2, size_t n);
+char			*ft_strdup(const char *s1);
+char			**ft_split(char const *s, char c);
+int				ft_atoi(const char *str);
+int				alpha(int c);
+int				ft_isdigit(int c);
+void			*ft_calloc(size_t count, size_t size);
+char			*ft_substr(char const *s, unsigned int start, size_t len);
 
 #endif

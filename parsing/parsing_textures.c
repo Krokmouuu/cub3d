@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_textures.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bleroy <bleroy@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ple-berr <ple-berr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/22 14:20:49 by bleroy            #+#    #+#             */
-/*   Updated: 2022/06/10 18:36:54 by bleroy           ###   ########.fr       */
+/*   Updated: 2022/07/21 15:15:31 by ple-berr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,13 +60,13 @@ void	get_texture3(char *str, t_game *game)
 	if (str == NULL)
 		error("Invalid map\n");
 	if (ft_strncmp(str, "NO ", 3) == 0)
-		game->text.n = get_texture_2(str);
+		game->text.north = get_texture_2(str);
 	if (ft_strncmp(str, "EA ", 3) == 0)
-		game->text.e = get_texture_2(str);
+		game->text.east = get_texture_2(str);
 	if (ft_strncmp(str, "WE ", 3) == 0)
-		game->text.w = get_texture_2(str);
+		game->text.west = get_texture_2(str);
 	if (ft_strncmp(str, "SO ", 3) == 0)
-		game->text.s = get_texture_2(str);
+		game->text.south = get_texture_2(str);
 	if (ft_strncmp(str, "F ", 2) == 0)
 	{
 		game->text.floor = get_color(str);
@@ -124,8 +124,8 @@ void	get_texture(int len, t_game *game)
 		free (str);
 	}
 	close(fd);
-	if (game->text.n == NULL || game->text.e == NULL
-		|| game->text.w == NULL || game->text.s == NULL)
+	if (game->text.north == NULL || game->text.east == NULL
+		|| game->text.west == NULL || game->text.south == NULL)
 		error("Invalid texture\n");
 	if (game->text.ceiling == NULL || game->text.floor == NULL)
 		error("Missing RGB values\n");

@@ -6,7 +6,7 @@
 #    By: ple-berr <ple-berr@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/18 18:32:58 by bleroy            #+#    #+#              #
-#    Updated: 2022/07/12 14:24:34 by ple-berr         ###   ########.fr        #
+#    Updated: 2022/07/21 15:15:35 by ple-berr         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -48,6 +48,8 @@ SRCS = gnl/get_next_line.c \
 	   game/startcub3d2.c \
 	   game/raycasting.c \
 	   game/raycasting2.c \
+	   game/raycasting3.c \
+	   game/raycasting4.c \
 	   game/keys.c \
 	   game/move.c \
 	   game/move_functions.c \

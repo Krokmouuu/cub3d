@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bleroy <bleroy@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ple-berr <ple-berr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/18 16:45:00 by bleroy            #+#    #+#             */
-/*   Updated: 2022/06/08 18:16:51 by bleroy           ###   ########.fr       */
+/*   Updated: 2022/07/30 11:29:34 by ple-berr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,10 +46,12 @@ int	main(int argc, char **argv)
 	t_game	game;
 
 	valid(argc, argv);
-	openmap(argv, &game);
-	parsing_map(&game);
 	game.mlx = mlx_init();
 	game.win = mlx_new_window(game.mlx, WIDTH, HEIGHT, "tuc3D");
+	load_texture(&game);
+	load_texture_2(&game);
+	openmap(argv, &game);
+	parsing_map(&game);
 	start_check_map(&game);
 	start(&game);
 	return (0);

@@ -6,7 +6,7 @@
 /*   By: ple-berr <ple-berr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 16:06:12 by ple-berr          #+#    #+#             */
-/*   Updated: 2022/07/12 14:24:35 by ple-berr         ###   ########.fr       */
+/*   Updated: 2022/07/21 15:15:33 by ple-berr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,9 @@ int	init_struct(t_game *g, int x)
 	g->ray.map_y = (int)g->ray.y;
 	g->ray.hit = 0;
 	g->ray.side = 0;
+	g->ray.perp_wall_dist = 0;
+	g->ray.side = 0;
+	g->ray.line_height = 0;
 	g->ray.color = GREEN;
 	g->ray.delta_dist_x = define_delta(g->ray.ray_dir_x);
 	g->ray.delta_dist_y = define_delta(g->ray.ray_dir_y);
@@ -30,6 +33,8 @@ int	init_struct(t_game *g, int x)
 			g->ray.x, g->ray.map_x, g->ray.delta_dist_x);
 	g->ray.side_dist_y = define_dist(g->ray.ray_dir_y,
 			g->ray.y, g->ray.map_y, g->ray.delta_dist_y);
+	g->ray.tex_x = 0;
+	g->ray.wall_x = 0;
 	return (1);
 }
 
@@ -46,29 +51,29 @@ int	rgb_to_hex(t_game *g)
 	return (color);
 }
 
-double	define_delta(double rayDir)
+double	define_delta(double r_dir)
 {
-	if (rayDir == 0)
+	if (r_dir == 0)
 		return (1e30);
-	return (fabs(1 / rayDir));
+	return (fabs(1 / r_dir));
 }
 
-double	define_dist(double rayDir, double ray, double map, double deltaDist)
+double	define_dist(double r_dir, double r, double map, double d_dist)
 {
 	double	result;
 
-	if (rayDir < 0)
+	if (r_dir < 0)
 	{
-		result = ((ray - map) * deltaDist);
+		result = ((r - map) * d_dist);
 		return (result);
 	}
-	result = ((map + 1.0 - ray) * deltaDist);
+	result = ((map + 1.0 - r) * d_dist);
 	return (result);
 }
 
-double	define_step(double rayDir)
+double	define_step(double r_dir)
 {
-	if (rayDir < 0)
+	if (r_dir < 0)
 		return (-1.0);
-	return (1);
+	return (1.0);
 }
