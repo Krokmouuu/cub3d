@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ple-berr <ple-berr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bleroy <bleroy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/18 16:44:13 by bleroy            #+#    #+#             */
-/*   Updated: 2022/08/01 12:45:40 by ple-berr         ###   ########.fr       */
+/*   Updated: 2022/08/01 13:04:36 by bleroy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@
 # include <math.h>
 # include <string.h>
 # include <fcntl.h>
-
 
 # define SQUARE_SIZE 20
 # define PI 3.14159265359
@@ -193,9 +192,9 @@ int				alpha(int c);
 int				ft_isdigit(int c);
 void			*ft_calloc(size_t count, size_t size);
 char			*ft_substr(char const *s, unsigned int start, size_t len);
-//* bonusse
+
+//* **************** Bonus ****************
 void			check_door(t_game *game);
-int				mlx_mouse_hide();
-int	uwu(int key, int x, int y, t_game *game);
+int				uwu(int key, int x, int y, t_game *game);
 
 #endif

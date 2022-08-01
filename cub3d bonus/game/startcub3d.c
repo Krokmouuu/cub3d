@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   startcub3d.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ple-berr <ple-berr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bleroy <bleroy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 18:21:21 by bleroy            #+#    #+#             */
-/*   Updated: 2022/08/01 12:42:18 by ple-berr         ###   ########.fr       */
+/*   Updated: 2022/08/01 13:04:20 by bleroy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,6 @@ void	start(t_game *game)
 	mlx_mouse_hide();
 	mlx_hook(game->win, 2, 1L << 0, keypressed, game);
 	mlx_hook(game->win, 17, 1L << 0, closed, game);
-	mlx_hook(game->win, 4, 1L << 8, uwu, game); 
+	mlx_hook(game->win, 4, 1L << 8, uwu, game);
 	mlx_loop(game->mlx);
 }

@@ -6,7 +6,7 @@
 /*   By: bleroy <bleroy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/18 12:54:19 by bleroy            #+#    #+#             */
-/*   Updated: 2022/07/18 17:54:03 by bleroy           ###   ########.fr       */
+/*   Updated: 2022/07/19 12:05:27 by bleroy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,9 @@ void	check_door(t_game *game)
 		x = -1;
 		while (game->map[y][++x] != '\n')
 		{
+			if (game->map[y][x] == 'D'
+				&& (game->map[y][x + 1] == '\n' || game->map[y][x + 1] == ' '))
+				error("Invalid Map\n");
 			if (game->map[y][x] == 'D'
 				&& (game->map[y][x - 1] == '1' && game->map[y][x + 1] == '1'))
 				break ;
