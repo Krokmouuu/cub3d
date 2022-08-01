@@ -6,21 +6,11 @@
 /*   By: ple-berr <ple-berr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/21 13:01:07 by ple-berr          #+#    #+#             */
-/*   Updated: 2022/07/30 11:17:17 by ple-berr         ###   ########.fr       */
+/*   Updated: 2022/08/01 12:20:23 by ple-berr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
-
-double	height(t_game *g)
-{
-	double	new_height;
-
-	new_height = HEIGHT / g->ray.perp_wall_dist;
-	if (new_height > HEIGHT)
-		new_height = HEIGHT;
-	return (new_height);
-}
 
 unsigned int	choose_texture(t_game *g, int side)
 {
@@ -40,10 +30,10 @@ unsigned int	choose_texture(t_game *g, int side)
 	{
 		if (g->ray.step_y <= 0)
 			c = get_data_color(g->ray.tex_x, g->ray.tex_y,
-					g->text.w.addr, &g->text.n);
+					g->text.w.addr, &g->text.w);
 		if (g->ray.step_y > 0)
 			c = get_data_color(g->ray.tex_x, g->ray.tex_y,
-					g->text.e.addr, &g->text.n);
+					g->text.e.addr, &g->text.e);
 	}
 	return (c);
 }

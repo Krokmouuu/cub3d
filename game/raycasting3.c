@@ -6,21 +6,11 @@
 /*   By: ple-berr <ple-berr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/21 12:50:35 by ple-berr          #+#    #+#             */
-/*   Updated: 2022/07/21 13:00:32 by ple-berr         ###   ########.fr       */
+/*   Updated: 2022/08/01 12:20:31 by ple-berr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
-
-void	clear_screen(t_game *g)
-{
-	int	i;
-
-	i = 0;
-	g->ray.color = GREEN;
-	while (i++ < WIDTH)
-		drawline(g, i, 0, HEIGHT);
-}
 
 void	drawline(t_game *game, int x, int draw_start, int draw_end)
 {
