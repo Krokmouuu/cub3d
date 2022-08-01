@@ -6,7 +6,7 @@
 /*   By: ple-berr <ple-berr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/18 16:44:13 by bleroy            #+#    #+#             */
-/*   Updated: 2022/07/30 15:26:32 by ple-berr         ###   ########.fr       */
+/*   Updated: 2022/08/01 12:40:13 by ple-berr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,7 +129,6 @@ unsigned int	get_data_color(int x, int y, void *addr, t_images *img);
 void			draw_texture(t_game *g);
 unsigned int	choose_texture(t_game *g, int side);
 double			height(t_game *g);
-void			clear_screen(t_game *g);
 //* **************** Game ****************
 void			start(t_game *game);
 int				closed(t_game *game);
@@ -142,7 +141,6 @@ void			start_check_map(t_game *game);
 int				keypressed(int key, t_game *game);
 int				move(int key, t_game *game);
 void			clear_player(t_game *game);
-void			draw_cube(t_game *game, int y, int x, int color);
 void			print_map(t_game *game, int y, int x);
 void			clearcast(t_game *game);
 void			drawline(t_game	*game, int x, int draw_start, int draw_end);

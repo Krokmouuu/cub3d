@@ -6,7 +6,7 @@
 #    By: ple-berr <ple-berr@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/18 18:32:58 by bleroy            #+#    #+#              #
-#    Updated: 2022/07/21 15:15:35 by ple-berr         ###   ########.fr        #
+#    Updated: 2022/08/01 12:48:32 by ple-berr         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -44,6 +44,7 @@ SRCS = gnl/get_next_line.c \
 	   parsing/checkfile.c \
 	   parsing/parsing_map.c \
 	   parsing/parsing_map2.c \
+	   parsing/parsing_map3_bonus.c \
 	   game/startcub3d.c \
 	   game/startcub3d2.c \
 	   game/raycasting.c \
@@ -71,7 +72,7 @@ NAME = cub3d
 
 CC = @cc
 
-CFLAGS = -Wall -Werror -Wextra -g -fsanitize=address
+CFLAGS = -Wall -Werror -Wextra -fsanitize=address -g
 
 RM = @rm -f
 
@@ -159,7 +160,7 @@ ${NAME}: ${OBJS}
 		@sleep .1
 		@clear
 		@echo "${_BOLD}${_UNDER}✨ Compilation terminée sans AUCUN problème ✨${_END}"
-		$(CC) $(OBJS)  $(CFLAGS) -o $(NAME) $(FLAGSMLX) -I${HOME}/.brew/opt/readline/include -L${HOME}/.brew/opt/readline/lib -lreadline 
+		$(CC) $(OBJS)  $(CFLAGS) -o $(NAME) $(FLAGSMLX) -I${HOME}/.brew/opt/readline/include -L${HOME}/.brew/opt/readline/lib -lreadline ./minilibx_opengl_20191021/libmlx.a
 
 clean :
 		${RM} ${OBJS}

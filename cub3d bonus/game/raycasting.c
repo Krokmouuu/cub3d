@@ -6,7 +6,7 @@
 /*   By: ple-berr <ple-berr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 16:03:15 by ple-berr          #+#    #+#             */
-/*   Updated: 2022/07/30 18:24:45 by ple-berr         ###   ########.fr       */
+/*   Updated: 2022/08/01 12:44:04 by ple-berr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,6 @@ void	raycast(t_game *g)
 	int		x;
 
 	x = -1;
-	clear_screen(g);
 	draw_floors(g);
 	while (++x < WIDTH && init_struct(g, x))
 	{
