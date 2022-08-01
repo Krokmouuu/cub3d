@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ple-berr <ple-berr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bleroy <bleroy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/18 16:44:13 by bleroy            #+#    #+#             */
-/*   Updated: 2022/08/01 12:40:13 by ple-berr         ###   ########.fr       */
+/*   Updated: 2022/08/01 16:57:26 by bleroy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,6 +129,11 @@ unsigned int	get_data_color(int x, int y, void *addr, t_images *img);
 void			draw_texture(t_game *g);
 unsigned int	choose_texture(t_game *g, int side);
 double			height(t_game *g);
+char			*ouinorth(t_game *g, char *str);
+char			*ouisouth(t_game *g, char *str);
+char			*ouieast(t_game *g, char *str);
+char			*ouiwest(t_game *g, char *str);
+
 //* **************** Game ****************
 void			start(t_game *game);
 int				closed(t_game *game);

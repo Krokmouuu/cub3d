@@ -6,7 +6,7 @@
 /*   By: bleroy <bleroy@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/18 16:44:13 by bleroy            #+#    #+#             */
-/*   Updated: 2022/08/01 13:04:36 by bleroy           ###   ########.fr       */
+/*   Updated: 2022/08/01 17:15:45 by bleroy           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,6 @@ typedef struct s_raycasting
 	int			color;
 	int			ceiling;
 	int			floor;
-
 	int			line_height;
 	double		wall_x;
 	int			tex_x;
@@ -129,6 +128,11 @@ unsigned int	get_data_color(int x, int y, void *addr, t_images *img);
 void			draw_texture(t_game *g);
 unsigned int	choose_texture(t_game *g, int side);
 double			height(t_game *g);
+char			*ouinorth(t_game *g, char *str);
+char			*ouiwest(t_game *g, char *str);
+char			*ouieast(t_game *g, char *str);
+char			*ouisouth(t_game *g, char *str);
+
 //* **************** Game ****************
 void			start(t_game *game);
 int				closed(t_game *game);
@@ -181,7 +185,6 @@ void			check_first_and_last(t_game *game);
 void			valid_map(t_game *game);
 void			get_player(t_game *game);
 void			check_wall(t_game *game);
-
 //* **************** Utils ****************
 int				ft_strcmp(char *s1, char *s2);
 int				ft_strncmp(const char *s1, const char *s2, size_t n);

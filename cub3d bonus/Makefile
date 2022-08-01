@@ -6,7 +6,7 @@
 #    By: bleroy <bleroy@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/18 18:32:58 by bleroy            #+#    #+#              #
-#    Updated: 2022/08/01 13:03:13 by bleroy           ###   ########.fr        #
+#    Updated: 2022/08/01 17:17:06 by bleroy           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -45,6 +45,7 @@ SRCS = gnl/get_next_line.c \
 	   parsing/parsing_map.c \
 	   parsing/parsing_map2.c \
 	   parsing/parsing_map3_bonus.c \
+	   parsing/get_good_path.c \
 	   game/startcub3d.c \
 	   game/raycasting.c \
 	   game/raycasting2.c \

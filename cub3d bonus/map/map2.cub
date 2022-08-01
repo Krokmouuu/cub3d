@@ -1,7 +1,7 @@
-NO blabla.xpm
-SO blabla.xpm
-EA blabla.xpm
-WE blabla.xpm
+NO ./texture/wall_1.xpm
+SO ./texture/wall_2.xpm
+EA ./texture/wall_3.xpm
+WE ./texture/wall_4.xpm
 
 C 0,0,0
 F 255,255,255

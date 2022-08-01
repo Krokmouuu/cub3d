@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: ple-berr <ple-berr@student.42.fr>          +#+  +:+       +#+         #
+#    By: bleroy <bleroy@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/18 18:32:58 by bleroy            #+#    #+#              #
-#    Updated: 2022/08/01 12:35:23 by ple-berr         ###   ########.fr        #
+#    Updated: 2022/08/01 16:51:38 by bleroy           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -44,6 +44,7 @@ SRCS = gnl/get_next_line.c \
 	   parsing/checkfile.c \
 	   parsing/parsing_map.c \
 	   parsing/parsing_map2.c \
+	   parsing/get_good_path.c \
 	   game/startcub3d.c \
 	   game/raycasting.c \
 	   game/raycasting2.c \
@@ -70,7 +71,7 @@ NAME = cub3d
 
 CC = @cc
 
-CFLAGS = -Wall -Werror -Wextra -g -fsanitize=address
+CFLAGS = -Wall -Werror -Wextra
 
 RM = @rm -f
 
